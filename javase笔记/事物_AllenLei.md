@@ -91,7 +91,7 @@ start transaction; -- 主动开启一条事务
 ```
 2. 手动提交事务方式
 ```java
-/**
+/*
     手动事务处理方式
     void setAutoCommit(boolean autoCommit)
     设置是否自动提交事务。false：手动提交，开启事务，等价于在控制台输入
@@ -131,4 +131,16 @@ start transaction; -- 主动开启一条事务
         } 
     }
 ```
+#### Connection 接口中与事务相关方法
+```
+void setAutoCommit(boolean autoCommit) : 设置是否自动提交事务
+ false: 手动提交，开启事务，等价于在控制台执行： start transaction;
+ true: 自动提交事务，默认值。
+
+void commit();提交事务
+void rollback();rollback transaction
+```
+###  DbUtils事务操作
+    - 案例需求 ： 从Jack的账户转200元到rose的账户上。
+1. 默认处理方式 
 ## 事务的注意事项
