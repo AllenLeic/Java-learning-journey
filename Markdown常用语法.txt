@@ -183,3 +183,13 @@ Pipe     | $1
 <font color=#00ffff size=3>null</font>
 <font color=gray size=5>gray</font>
 
+Task lists in all markdown doucuments
+- [ ] Mercury
+- [x] Venus
+- [x] Earth (Orbit/Moon)
+- [x] Mars
+- [ ] Jupiter
+- [ ] Saturn
+- [ ] Uranus
+- [ ] Neptune
+- [ ] Comet Haley
