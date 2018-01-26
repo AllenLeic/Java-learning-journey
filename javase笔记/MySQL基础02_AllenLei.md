@@ -1,3 +1,4 @@
+[TOC]
 ## MySQL基础第二天 day22
 - 主要内容是MySQL的约束 和多表入门
 <p>知识点补充:
@@ -56,7 +57,11 @@ where 和 having 的区别 :
 1-- 数据查询方式不同where 对 行数据经行筛选, 而having 是对列经行 筛选
 2-- 出现的位置不同 where 在group by 前面, having 在后面
 3-- where 后面不可接聚合函数, having 可以;
-
+### 数据库的备份
+1. 命令行
+    + mysqldump -u用户名 -p密码 数据库>路径
+    + mysql -u用户名 -p密码 数据库<路径
+2. SQLyog的导入和导出
 约束
     作用
         保证数据的正确性、有效性和完整性。

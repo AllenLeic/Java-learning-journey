@@ -1,5 +1,15 @@
-MySQL 基础 和 SQL语句
+[TOC]
+#  MySQL 基础 和 SQL语句
+**查询的格式：每个关键字换一行比较好，思路比较清晰** 如下所示：
 
+    mysql> select *
+        -> from users
+        -> where salary<1200
+        -> or salary>5000;
+###### ifnull 的用法
+
+    mysql> select ifnull(salary,0) 薪水,ifnull(salary,0)*12 年薪
+        -> from users;
 学习目标:
 # 数据库是什么?
 	用于存储数据的仓库
@@ -116,28 +126,28 @@ SQL语句 : 每条语句用分号来作为结束符,和Java一样
 		5.drop database student;删除student数据库
 		6.alter database student default character set gkb;
 	
-	-- 对表操作
-	增	{1.use student;		选择要操作的数据库
-		2.show tables;		查看数据库的所有表
-		3.create table student (	创建列 空列要加() 如create table student();
-			id int,
-			name varchar(20),
-			age int
-		);}
-		
-	查	{4.show create table student; -- 查看数据表创建语句
-		5.desc table; -- 以表结构形式查看表结构。}
-		
-		6.create table employee like student ; 创建新的数据库表和旧表结构一样
-	删	7.drop table student;删除表
-	改	8.alter table student add sex char(2); 加个性别列
-		9.alter table student add math int , add english int ;同时加两列
-		10.alter table student modify sex varchar(2); 重新定义列的数据类型
-		11.alter table student change sex gender varchar(2);修改列的名字和数据类型
-		12.alter table student drop math , drop english;删除列;可删多个
-		13.alter table student rename employee ;重命名表标题 
-		14.alter table student default character set utf8; 从新定义表的编码类型
-	-----------------主要是对数据的结构和类型进行操作---------------
+-- 对表操作
+增	{1.use student;		选择要操作的数据库
+	2.show tables;		查看数据库的所有表
+	3.create table student (	创建列 空列要加() 如create table student();
+		id int,
+		name varchar(20),
+		age int
+	);}
+	
+查	{4.show create table student; -- 查看数据表创建语句
+	5.desc table; -- 以表结构形式查看表结构。}
+	
+	6.create table employee like student ; 创建新的数据库表和旧表结构一样
+删	7.drop table student;删除表
+改	8.alter table student add sex char(2); 加个性别列
+	9.alter table student add math int , add english int ;同时加两列
+	10.alter table student modify sex varchar(2); 重新定义列的数据类型
+	11.alter table student change sex gender varchar(2);修改列的名字和数据类型
+	12.alter table student drop math , drop english;删除列;可删多个
+	13.alter table student rename employee ;重命名表标题 
+	14.alter table student default character set utf8; 从新定义表的编码类型
+-----------------主要是对数据的结构和类型进行操作---------------
 
 --> DML (data manipulation language) 数据操作
 	-- 查看数据
@@ -154,18 +164,18 @@ SQL语句 : 每条语句用分号来作为结束符,和Java一样
 		2.delete from student where id= 1; 把id=1的这一行数据删除;
 		3.truncate student;删除所有记录 
 		
-			问:drop delete 和truncate 删除所有记录 有什么不同?
-			答:
-				1,delete 一行一行的删除数据;还把数据放回收站;
-				  truncate (是截断的意思)先把表全部截断,
-				  再创建一个和之前的数据结构一样的表,不能回滚
-				  drop 是直接把数据结构也给删除掉,
-				  所占用的空间全部释放掉不能回滚
-				2.速度上面一般而言 drop>truncate>delete
-				3.应用范围:truncate 只能对table; delete可以对table和value;
-				4.drop 不保留数据结构,而delete和truncate保留数据结构
-	-----------------主要是对数据的内容进行操作---------------
-	
+问:drop delete 和truncate 删除所有记录 有什么不同?
+答:
+	1,delete 一行一行的删除数据;还把数据放回收站;
+	  truncate (是截断的意思)先把表全部截断,
+	  再创建一个和之前的数据结构一样的表,不能回滚
+	  drop 是直接把数据结构也给删除掉,
+	  所占用的空间全部释放掉不能回滚
+	2.速度上面一般而言 drop>truncate>delete
+	3.应用范围:truncate 只能对table; delete可以对table和value;
+	4.drop 不保留数据结构,而delete和truncate保留数据结构
+-----------------主要是对数据的内容进行操作---------------
+
 --> DQL (data query language) 查询数据的语句; query 查询
 	普	 distinct : 不重复的
 	查	1.查询所有列: select * for student; * 代表所有的列
@@ -179,55 +189,83 @@ SQL语句 : 每条语句用分号来作为结束符,和Java一样
 	    5.去除重复数据,比如去除姓名重复的学生. 
 	    	select distinct name from student;
 
-	条件查询语句 关键字where 主要关键字有 and or not like;
-		6.逻辑条件
-		--查询id值为3,且性别为男的学生,(同时满足两个条件)
-		select * from student where id=3 && gender = '男';
-		select * from student where id=3 and gender = '男';
-				&& 	等价于	and
-		同理 	|| 	<==>	or
+条件查询语句 关键字where 主要关键字有 and or not like;
+6.逻辑条件
+--查询id值为3,且性别为男的学生,(同时满足两个条件)
+select * from student where id=3 && gender = '男';
+select * from student where id=3 and gender = '男';
+		&& 	等价于	and
+同理 	|| 	<==>	or
 
-		-- 判断是否为空串：=''、<>''
-		-- 判断是否为空：IS NULL,IS NOT NULL
+-- 判断是否为空串：=''、<>''
+-- 判断是否为空：IS NULL,IS NOT NULL
 
-		alter table student add address varchar(20);
-		--  查询 address 为空串的学生
-		select * from student where address = '';
+alter table student add address varchar(20);
+--  查询 address 为空串的学生
+select * from student where address = '';
 
-		--  查询 addres 不为空的学生
-		select * from student where address <> '';
+--  查询 addres 不为空的学生
+select * from student where address <> '';
 
-		--  查询 address 为NULL的学生
-		select * from student where address is null;
-		--  查询 address 不为NULL的学生
-				select * from student where address is not null;
+--  查询 address 为NULL的学生
+select * from student where address is null;
+--  查询 address 不为NULL的学生
+		select * from student where address is not null;
 
-				--  查询 address 为空或NULL的学生
-				select * from student where address is null || address = '';
-				--  查询 address 段不为空且不为NULL的学生
-				select * from student where address is not null && address <> '';
+--  查询 address 为空或NULL的学生
+select * from student where address is null || address = '';
+--  查询 address 段不为空且不为NULL的学生
+select * from student where address is not null && address <> '';
 
-				-- 模糊查询：LIKE
-				-- %：表示匹配多个任意字符(0到多个)
-				-- _：表示匹配一个任意字符
-						
-				--  查询姓张的学生
-				select * from student where name like '张%';
-				--  查询姓名中包含'张'的学生
-				select * from student where name like '%张%';
+-- 模糊查询：LIKE
+-- %：表示匹配多个任意字符(0到多个)
+-- _：表示匹配一个任意字符
+		
+--  查询姓张的学生
+select * from student where name like '张%';
+--  查询姓名中包含'张'的学生
+select * from student where name like '%张%';
 
-				--  查询姓张，且名字只有两个字的学生
-				select * from student where name like '张_';
+--  查询姓张，且名字只有两个字的学生
+select * from student where name like '张_';
 
-				-- in 关键字
-				-- 查询id是1或3的学生
-				select * from student where id = 1 || id = 3;
-				select * from student where id in(1,3);
-
-
-				 show character set;
-				 show collation like 'utf8%'
-						 
+-- in 关键字
+-- 查询id是1或3的学生
+select * from student where id = 1 || id = 3;
+select * from student where id in(1,3);
 
 
+ show character set;
+ show collation like 'utf8%'
 
+ 12、校对规则概述(了解)
+1.  概念
+    它是一组规则，该规则决定了某一字符集下的字符如何进行排序和比较。
+    如：a,B,c,D，如果使用utf-8的编码，按照普通的字母顺序，而且不区分大小写。如果想使用字母的二进制比较和排序，则可以修改它的校对规则。
+        
+            utf8_general_ci 按照普通的字母顺序，而且不区分大小写
+            （比如：a B c D）
+            utf8_bin    按照二进制排序（比如：A排在a前面，B D a c） 
+
+2.  查看字符集和校对规则
+    -- show character set; -- 显示所有字符集及其默认的校对规则
+    -- show collation like 'utf8%'  -- 显示所有utf8的校对规则
+
+3.  创建数据库同时指定字符集和校对规则
+    create database 数据库名 default character set gbk collate gbk_chinese_ci;
+
+4.  修改数据库的校对规则 
+    alter database 数据库名 collate utf8_general_ci;
+					 
+
+##### homework
+4. SQL语句分类DDL,DML,DQL,DCL表示的含义
+- DDL(data definition language) 数据定义语句
+- DML(data manipulation Language) 数据操作语句
+- DQL(data query language) 数据查询语句
+- DCL(data control language) 数据控制语句
+
+5. 创建数据库并设置 utf8 编码,完成数据库的添加,删除,查询,使用.
+>create database;
+6. 使用数据库 webdb_1,在该数据库下创建表: category.
+> create database webdb_1; create table category;
