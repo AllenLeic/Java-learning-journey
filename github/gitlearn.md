@@ -1,6 +1,6 @@
 [TOC]
 # 记录一下个人学习GitHub的经历
-- [ ]  为什么要学习GitHub？
+- [x]  为什么要学习GitHub？
 - [ ]  GitHub入门
 - [ ]  Git工具的基本使用
 - [ ]  [markdown语法](../Markdown常用语法.txt)
