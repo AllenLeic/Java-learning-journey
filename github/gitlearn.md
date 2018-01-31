@@ -21,5 +21,9 @@ github 为我们编写了一些特定的 ![](image/ignore.png)
 - 查看gitignore 忽略的规则
 - git check-ignore -v [文件名]
 
-### GitHub换行
-
+### Git常用命令
+1. git status 查看git状态
+2. git log 查看本仓库的日志
+3. git config --global user.name AllenLeic 修改全局配置的用户名字
+4. git config --global user.email leicong2015@outlook.com 修改全局配置的用户email
+5. git 

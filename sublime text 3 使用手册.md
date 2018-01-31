@@ -22,6 +22,25 @@ ctrl + shift + ↓ : 整行向下移动
 完成，基本的编辑就可以了
 
 
+### 使用模板
+1. 工具--→插件开发--→新建代码段--→会出来一个文件如下
+```snippet
+<snippet>  
+    <content><![CDATA[ 
+Hello, ${1:this} is a ${2:snippet}. 
+]]></content>  
+    <!-- Optional: Set a tabTrigger to define how to trigger the snippet -->  
+    <!-- <tabTrigger>hello</tabTrigger> -->  
+    <!-- Optional: Set a scope to limit where the snippet will trigger -->  
+    <!-- <scope>source.python</scope> -->  
+</snippet>
+```
+2. 这就是新建的代码段了，将要修改的内容放入到 **CDATA[ 内容 ]**里面
+3. 把`<!-- <tabTrigger>hello</tabTrigger> -->`这段代码的注释解开，代表用table键触发
+4. hello代表需要触发的单词，可以自己修改
+5. `<!-- <scope>source.python</scope> --> ` 这段代码代表了在那些地方使用
+- .python 代表在python中使用。如果是在.css文件中使用就把python改为css就行了
+经过测试测试成功
 
- 
- 
+6. `Hello, ${1:this} is a ${2:snippet}.`这段代码的含义如下
+  - `${1:this}` :代表光标在这个地方 在代码上放`${1}`就行，如果需要通时编辑几个光标就弄重复的相同的`${1}`，如果想光标快速跳转到下一光标可以放`${2},${3}`然后按table键可以把光标从1移到2上面去，按esc解除光标快速移动

@@ -1,4 +1,4 @@
 # 把Hbuilder自动生成的文件拦截
 .project
-# 把自动生成的html文件给拦截
+# 把所有的html文件给拦截
 *.html
