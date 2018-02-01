@@ -301,7 +301,7 @@ document.write(sum(a,b));
 - **注意事项：**  JavaScript没有方法重载的说法，只要函数名相同后面的就会覆盖前面的，这是由于其编译型语言特性决定的，边走边编译。
 - 函数中的arguments隐式数组对象  
 - 再任何一个函数的内部都有一个隐藏的数组，名字叫arguments，当调用函数的时候，实参先传递给arguments，函数的形参再从数组中去取元素的值。
-- ![arguments](img/arguments隐式函数 "arguments隐式函数的实现方式");
+- ![arguments](img/arguments隐式函数.png "arguments隐式函数的实现方式");
 - **结论：实参个数与形参个数无关，可以不同。**  
 - 示例代码： 在函数内部输出arguments的长度和数组中的每个元素。  
 ```javascript
@@ -406,7 +406,7 @@ alert(result);
 ## BOM 模型
 ### 什么时BOM模型  
 **BOM：Browser Object Model 浏览器对象模型。** 由一系列相关的对象构成。通过BOM提供的对象可以与浏览器窗口进行交互，每个对象都提供了很多方法与属性，只要操作这些浏览器对应的对象，操作这些对象的属性，那么就能改变浏览器的行为。
-![BOM对象图解](img/BOM对象图解.png "BOM对象图解")  
+![BOM对象图解](img/BOM模型.png "BOM对象图解")  
 ### BOM的常用对象
 1. screen 对象，screen对象中存放着有关显示浏览器屏幕的信息。
 2. window对象，包含的属性描述了正在使用的浏览器或一个框架。
