@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>事件案例</title>
+	<style type="text/css">
+		body {
+			font-family: "微软雅黑";
+		}
+	</style>
+	<script type="text/javascript">
+    	function loadSuccess(){
+				// 获得用户名文本输入框，
+				var nameInput = document.getElementById("username");
+				// 设置默认值：jack
+				nameInput.value = "jack";
+			}
+			// 鼠标移动看美女
+		function viewGirl(img) {
+			img.src="img/girl2.jpg";
+			// img.alt="移过来了吗？"
+		}
+		// 鼠标移走还原文字
+		function leave(leave) {
+			leave.src="";
+		}
+		// 当文本输入框获得焦点时，清空文本输入框的文字。
+		function clearFont(argument) {
+			argument.value="";
+		}
+		// 当文本输入框失去焦点时，清空文本输入框的文字。
+		// function setName(nameInput) {
+			// nameInput.value="jack";
+		// }
+		// 当改变城市时，弹框显示用户选择的城市名
+		function changeCity(city) {
+			alert(city.value);
+		}
+		// 当点击提交按钮时，提交表单
+		function submitSucceed() {
+			var nameInput = document.getElementById("username");
+			if (nameInput.value == "rose") {
+				return true;
+			} else {
+				return false;
+			}
+		}
+	</script>
+</head>
+<body onload="loadSuccess()">
+	<form action="第一个网页.html" onsubmit="return submitSucceed()" >
+		<img src="" alt="鼠标经过看美女"/ onmouseover="viewGirl(this)" onmouseleave="leave(this)"> <br/>
+		用户名：<input type="text" id="username"/ onfocus="clearFont(this)" onblur="setName(this)"> <br/>
+		城市： <select name="" id="" onchange="changeCity(this)">
+			<option >北京</option>
+			<option >上海</option>
+			<option >广州</option>
+			<option >深圳</option>
+		</select><br />
+		<input type="submit"/ value="提交内容">
+	</form>
+</body>
+</html>

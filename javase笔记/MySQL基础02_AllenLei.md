@@ -68,3 +68,60 @@ select min(math) 最低分 from student;
   比如：LIMIT 0,2 表示从1行开始进行查询，查询2行数据。
 - 注意事项：
   如果分页同时使用排序， **则limit语句要放到排序语句后面**
+- 例：
+``` sql
+-- 分页查询，共5条数据，每页显示两条数据，共三页  
+select * from student limit 0,2;
+select * from student limit 2,2;
+select * from student limit 4,2;
+
+-- 分页的同时排序
+select * from student order by math desc limit 0,4;
+```
+
+### MySQL单表查询之分组查询
+- 分组查询概述：
+  - 语句： group by 列名 having 条件。  
+- 注意事项： 
+  - 如果分组语句和聚合函数结合使用，则聚合函数的作用就是对组的信息进行运算。   
+- `having`关键字的作用
+  - 根据条件对组信息进行筛选/过滤。
+#### where 和having 语句的区别
+1.   
+  - where 语句是对行进行筛选的。
+  - having 语句是对组进行筛选。
+2.  
+  - where 语句后面不能使用聚合函数。
+  - having 语句后面可以使用聚合函数。
+3. 
+  - where语句必须在group by 前面
+  - having 语句必须在group by 后面  
+如何选择having 和where
+- 只有分组后过滤数据，则使用having语句，其他使用where语句  
+- 示例：
+``` sql
+-- 查询男女的数量个多少。
+select gender 性别，count(*) as 人数 from student group by gender;
+```
+
+### 数据库的备份和还原
+- 通过DOS命令行方式
+1. 备份数据库
+  - 语法格式：mysqldump -u用户名 -p密码 -B 数据库 > 文件的路径;  
+2. 数据库还原
+  - 语法格式：mysql -u用户名 -p密码 < 文件的路径;  
+- 利用GUI 工具 SQLyog  
+1. 备份：选中数据库，右键“备份/导出”，指定导出路径，保存成.sql文件即可
+2. 还原：数据库列表区域点“从sql转存储文件导入数据库” 然后选择备份了的文件即可  
+
+### SQL约束
+1. SQL约束的作用  
+  约束主要完成对数据的检验，保证数据的完整性和准确性  
+2. 约束的分类  
+  DEFAULT： 默认约束  
+  NOT NULL：非空约束  
+  UNIQUE: 唯一约束  
+  PRIMARY KEY : 主键约束  
+  FOREIGN KEY : 外键约束  
+
+  **注意：约束实在创建表结构的时候指定，或修改表结构的时候指定**

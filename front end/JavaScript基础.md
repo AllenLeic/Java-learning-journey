@@ -191,4 +191,407 @@ switch(变量名) {
 **和Java中增强for的区别：** 
   - 如果遍历数组，item是数组的索引。  
   - 如果遍历对象，item是对象的属性。  
-  - 
+- 示例代码：
+```javascript
+<script type="text/javascript">
+    // 数组
+    var arr = [1,2,3,4,5];
+    // 普通for
+    for(var i= 0 ;i < arr.length; i++) {
+        document.write(arr[i] + "<br/>");
+    }
+
+    // for-in语句
+    // 如果遍历的是数组，则item是的索引值。
+    for(var item in arr) {
+        document.write(arr[item] + "<br/>");
+    }
+
+    // 相当定义了一个Person类，该类有两个属性：name和age
+    function Person(name,age){
+        this.name = name;
+        this.age = age;
+    }
+    // 创建对象
+    var p = new Person("小泽",23);
+    // 如果遍历的是对象，则item是对象的属性名
+    for(var item in p) {
+        document.write(item + "=" + p[item] +"<br/>");
+    }
+
+</script>
+```
+- **with语句**  
+  - 格式：
+```javascript
+    with (Object) {
+
+}
+```
+  - 作用：可以将重复使用的对象使用with结构，再with结构中可以直接调用该对象的方法。  
+  - 示例代码  
+```javascript
+<script type="text/javascript">
+    // 定义变量
+    var a = 10;
+    var b = 10;
+    var c = true;
+    var d = 1.5;
+    var e = 'a';
+    var f = [1,2,3,4];
+
+    with (document) {
+        write("a = " + a + "<br />");
+        write("b = " + b + "<br />");
+        write("c = " + c + "<br />");
+        write("d = " + d + "<br />");
+        write("f = " + f + "<br />");
+    }
+</script> 
+```
+- **break和continue语句** ：和Java中的用法一样   
+##### 函数
+- 函数的类型
+- 系统函数
+- 自定义函数
+
+###### 系统函数  
+- JavaScript库里面定义好的，直接给开发者使用的函数。
+- 常用的系统函数
+```javascript
+parseInt("字符串数字"); 字符串转为整数  
+parseFloat("字符串数字"); 字符串转为小数  
+isNaN(“数据”); 判断给定的数据不是一个数字  
+alert(“提示信息”)；弹出框，弹出框内容：提示信息  
+prompt(“提示标题”,输入框默认值)；输入框，返回用户输入的内容。  
+confirm(“提示信息“)；确认框，有返回值，确认：true，取消：false
+eval(“内容”)；将字符串的内容转换成可执行语句，然后执行。
+```
+- confirm 和 eval 示例代码  
+```javascript
+<script type="text/javascript">
+    // confirm(“提示信息“)；确认框，有返回值，确认：true，取消：false
+    var result = confirm("请问你是否要删除该视频？");
+    if (result) {
+        document.write("删除成功");
+    } else {
+        document.write("取消删除");
+    }
+
+    // eval(“内容”)；将字符串的内容转换成可执行语句，然后执行。
+    var content = "var a = 10; var b = 20;";
+    eval(content);
+    document.write("a = " + a + "<br/>" + "b = " + b );
+</script>
+```
+#####  自定义函数
+- 定义格式
+```javascript
+    function name(parameters) {
+        // function body
+}
+```
+- 示例代码:定义一个函数求两个数之和。
+```javascript
+function sum(a,b) {
+    return a + b;
+}
+document.write(sum(a,b));
+```
+- **注意事项：**  JavaScript没有方法重载的说法，只要函数名相同后面的就会覆盖前面的，这是由于其编译型语言特性决定的，边走边编译。
+- 函数中的arguments隐式数组对象  
+- 再任何一个函数的内部都有一个隐藏的数组，名字叫arguments，当调用函数的时候，实参先传递给arguments，函数的形参再从数组中去取元素的值。
+- ![arguments](img/arguments隐式函数 "arguments隐式函数的实现方式");
+- **结论：实参个数与形参个数无关，可以不同。**  
+- 示例代码： 在函数内部输出arguments的长度和数组中的每个元素。  
+```javascript
+<script type="text/javascript">
+    // 示例代码：定义一个函数求两个数之和。
+    function sum(a,b){
+        document.write("两个参数 <br/>"); 
+        return a + b;
+    }
+    // 关于函数重载：在上一个示例中，在定义一个函数，求三个数之和。
+    /**
+        注意：
+            在js中，没有函数重载的概念，如果函数名相同，后面会覆盖前面定义的函数。
+
+        关于函数中的arguements数组
+            每一个js函数中有会有一个arguements数组，该数组会先接收调用方法时传递的所有实际参数
+            比如
+            sum(1,2) 
+                arguements[0] = 1
+                arguements[1] = 2
+
+            sum(1,2,3)
+                arguements[0] = 1
+                arguements[1] = 2
+                arguements[2] = 3
+
+
+     */
+    function sum(a,b,c){ 
+        // document.write("三个参数 "+c+"<br/>"); 
+        // 遍历arguements数组
+        for(var index in arguments) {
+            alert(arguments[index]);
+        }
+        return a + b + c;
+    }
+    // 数字和undefined相加，结果是：NaN
+    document.write(sum(1,2) + "<br/>"); // NaN 
+    document.write(sum(1,2,3)+ "<br/>"); // 6
+</script>
+```
+##### 自定义匿名函数  
+- 概念：没有名字的函数则称为匿名函数。
+- 格式
+```javascript
+var sum = function(paremeters) {
+    // function body
+}
+- 示例代码： 定义一个匿名函数求两个数之和。  
+```javascript
+<script type="text/javascript">
+  // 示例代码：定义一个函数求两个数之和。
+  var add = function(a,b){
+      return a+b;
+  }
+  // 调用函数
+  var result = add(1,2);
+alert(result);
+</script>
+```
+
+##  JavaScript的事件
+### 事件概述
+时间式js不可或缺的组成部分，要学习js的时间，必须要理解几个概念：
+1. 事件源： 被监听的html元素
+2. 事件： 某类动作，例如点击事件，移入移出事件，敲击键盘事件等
+3. 事件与事件源的绑定： 在事件源上注册某事件
+4. 事件出发后的响应行为： 事件触发后需要执行的代码，一般使用函数进行封装。
+### 常用的事件  
+| **事件名**         | **描述**                     |
+| --------------- | -------------------------- |
+| **onload**      | 当指定内容被加载完毕的时候会触发           |
+| **onsubmit**    | 当表单提交时触发该事件---注意事件源是表单form |
+| **onclick**     | 鼠标点击某个对象                   |
+| ondblclick      | 鼠标双击某个对象                   |
+| **onblur**      | 元素失去焦点                     |
+| **onfocus**     | 元素获得焦点                     |
+| **onchange**    | 下拉框内容发生变化的时候触发             |
+| onkeydown       | 某个键盘的键被按下                  |
+| onkeypress      | 某个键盘的键被按下或按住               |
+| onkeyup         | 某个键盘的键被松开                  |
+| onmousedown     | 某个鼠标按键被按下                  |
+| onmouseup       | 某个鼠标按键被松开                  |
+| **onmouseover** | 鼠标被移到某元素之上，只会在移到元素上时触发一次   |
+| **onmouseout**  | 鼠标从某元素移开                   |
+| **onmousemove** | 鼠标被移动，只要移动就触发              |
+
+### 事件案例演示
+#### 案例演示效果图
+![事件案例演示图](img/鼠标点击看美女.png "鼠标点击看美女")  
+####  案例需求说明
+
+1. 当网页加载完成后，用户名默认显示：jack
+2. 当鼠标经过文字：” 鼠标经过看美女” 显示效果如右图
+3. 当鼠标离开文字：”鼠标经过看美女”显示效果如左图
+4. 当文本输入框获得焦点时，清空文本输入框的文字。
+5. 当文本输入框失去焦点时，设置文本输入框内容为：jack
+6. 当改变城市时，弹框显示用户选择的城市名
+7. 当点击提交按钮时，提交表单。
+
+#### [ **案例代码** ]("html/事件案例01.html" "事件案例01")  
+## BOM 模型
+### 什么时BOM模型  
+**BOM：Browser Object Model 浏览器对象模型。** 由一系列相关的对象构成。通过BOM提供的对象可以与浏览器窗口进行交互，每个对象都提供了很多方法与属性，只要操作这些浏览器对应的对象，操作这些对象的属性，那么就能改变浏览器的行为。
+![BOM对象图解](img/BOM对象图解.png "BOM对象图解")  
+### BOM的常用对象
+1. screen 对象，screen对象中存放着有关显示浏览器屏幕的信息。
+2. window对象，包含的属性描述了正在使用的浏览器或一个框架。
+3. navigator对象，包含的属性描述了正在使用的浏览器。
+4. history对象，其实就是用来保存浏览器历史记录信息。
+5. location对象，location对象是window对象的一个部分，可通过window.location属性来访问。  
+### window对象
+- 主要掌握三个功能
+  + 弹框方法
+  + 打开新窗口
+  + 定时器方法
+
+#### 弹框方法
+1. 提示框：alert(提示信息);
+2. 确认框：confirm(提示信息);
+3. 输入框：prompt(提示信息);
+
+#### 打开新窗口
+1. 相关方法
+  - open(); 打开新窗口。
+2. 示例代码
+  - 打开网页上的按钮，在新窗口中打开一个广告界面。
+```javascript
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>open方法测试</title>
+  <script style="text/javascript">
+     function openAd() {
+           window.open("html/第一个网页.html");
+       }  
+  </script>
+</head>
+<body>
+  <input type="button" value="点击弹出广告" onclick="openAd();" />
+</body>
+</html>
+````
+
+#### 定时器
+1. 相关方法
+  - **taskId = setInterval（方法名，毫秒值）** 开启一个定时任务，每隔指定的毫秒数执行指定的方法，返回定时任务的id号。（会重复执行）
+  - setTimeout(方法名，毫秒值)；在指定的毫秒术后执行指定的代码（只会执行一次）
+  - clearInterval(taskId); 根据任务id号取消定时任务。
+2. 代码示例：
+  - 开启一个定时任务，每隔3秒后打开广告界面。
+  - 开启一个定时任务，3秒后打开广告界面。
+```javascript
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="UTF-8">
+        <title></title>
+        
+        <script type="text/javascript">
+            function openAd(){
+                // 打开广告界面
+                window.open("15-广告界面.html","_blank","width=400,height=300,left=300px,top=500px");
+            }
+            
+            // 每隔3秒弹一个广告界面，会重复执行
+            var taskId = window.setInterval("openAd();",3000);
+            // 停止广告
+            function closeAd(){
+                // 清除定时任务
+                window.clearInterval(taskId);
+            }
+            // 3秒后弹出一个广告,只执行一次。
+            // window.setTimeout("openAd();",3000);
+            
+        </script>
+    </head>
+    <body>
+        <input type="button" value="弹出广告界面" onclick="openAd();"/>
+        <input type="button" value="禁止弹出广告" onclick="closeAd();"/>
+    </body>
+````
+#### location对象
+1. 概述
+  - location对象包含有关当前url的信息。
+  - location对象是window对象的一部分，可以通过window.location属性来访问。
+  - 重要属性： **href** ： 设置或获取地址栏URL字符串。
+2. 代码示例
+  - 通过href属性修改地址栏
+```html
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>location对象示例</title>
+    <script style="text/javascript">
+        function changeWeb() {
+            window.location.href = "html/事件案例01.html";
+        }
+    </script>
+</head>
+<body>
+    <input type="button" value="location测试" onclick="changeWeb();" />
+</body>
+</html>
+```
+
+#### history对象
+1. 概述
+  - 用来操作浏览器历史访问记录。
+2. 相关方法
+![history对象相关方法](img/history对象相关方法.png "history对象相关方法")  
+3. 示例代码：
+```html
+<!-- 1.html -->
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="UTF-8">
+        <title></title>
+
+        <script type="text/javascript">
+            // 回到上一页
+            function lastPage(){
+                history.back();
+            }
+            // 去到下一页
+            function nextPage(){
+                history.forward();
+            }
+        </script>
+    </head>
+    <body>
+        1.html<br/>
+        <a href="#" onclick="lastPage();">上一页</a><br />
+        <a href="#" onclick="nextPage();">下一页</a><br />
+        <a href="2.html">进入2.html</a>
+    </body>
+</html>
+
+<!-- 2.html -->
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="UTF-8">
+        <title></title>
+
+        <script type="text/javascript">
+            // 回到上一页
+            function lastPage(){
+                history.back();
+            }
+            // 去到下一页
+            function nextPage(){
+                history.forward();
+            }
+        </script>
+    </head>
+    <body>
+        2.html<br/>
+        <a href="#" onclick="lastPage();">上一页</a><br />
+        <a href="#" onclick="nextPage();">下一页</a><br />
+        <a href="3.html">进入3.html</a>
+    </body>
+</html>
+
+<!-- 3.html -->
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="UTF-8">
+        <title></title>
+
+        <script type="text/javascript">
+            // 回到上一页
+            function lastPage(){
+                history.back();
+            }
+            // 去到下一页
+            function nextPage(){
+                history.forward();
+            }
+        </script>
+    </head>
+    <body>
+        3.html<br/>
+        <a href="#" onclick="lastPage();">上一页</a><br />
+        <a href="#" onclick="nextPage();">下一页</a><br />
+    </body>
+</html>
+```
+
