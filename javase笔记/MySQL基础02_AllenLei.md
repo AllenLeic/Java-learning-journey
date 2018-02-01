@@ -48,7 +48,7 @@
   - count();求指定列的记录数
 -  **注意事项：** 聚合函数都会排除是 **null**的值。
 - 举例,有如下数据 ![数据](image/聚合函数数据表.png "数据")
-<code type="sql">
+<code>
 # 1.查询学生总数
 select count(*) 学生总数 from student;
 # 2.查询年龄大于40的总数
@@ -60,3 +60,11 @@ select avg(math) 平均分 from student;
 # 5. 查询学生数学成绩最低分
 select min(math) 最低分 from student;
 </code>
+
+###  分页查询
+- 格式：
+  LIMIT 起始行号，查询多少行
+  行号从0开始
+  比如：LIMIT 0,2 表示从1行开始进行查询，查询2行数据。
+- 注意事项：
+  如果分页同时使用排序， **则limit语句要放到排序语句后面**
