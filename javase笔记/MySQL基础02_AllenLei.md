@@ -1,14 +1,22 @@
-[TOC]
 ## MySQL基础第二天 day22
 - 主要内容是MySQL的约束 和多表入门
 知识点补充:
 1. 用set names gbk; 来解决dos命令窗口不能插入中文编码的问题,不过不是永久性的;
 2. 比较运算符: between... and ...  <==>  >= ... <=
-3. 逻辑运算符: not 相当于Java的!
+  - 查询成绩在85 到90 之间的学生
+    + `select * from student where math between 85 and 90;`
+    
+3. 逻辑运算符: not 
+    - 查询姓名不为张小苍的学生信息
+    `select * from student where not name = '张小苍'`
 4. 包含  in(1,3) 意思为 1或者3 相当于Java的正则表达式的 [1,3] 只能2选1;
 5. 使用  \`关键字\`   来转义关键字, 让关键字可以当普通的字符串来用
+6. 比较运算符： between···and··· **包头包尾**
+    
+7. 逻辑运算符：not
+   
 
-###### 常见问题回答
+### 常见问题回答
 1. 如何解决在DOS中无法插入或查询中文字符时乱码的问题   
     方案1:修改my.ini 配置文件,将utf8修改gbk即可，不建议使用。
     方案2:执行一条SQL语句：set names gbk;
@@ -21,100 +29,34 @@
   - 执行完上述命令后用下面的命令刷新权限
       flush privileges;
   - 之后关闭mysql服务，然后启动mysql服务，大功告成
-</p>
-<h4>学习目标:</h4>
-    1. 排序
-    2. 聚合函数
-    3. 分页查询
-    4. 分组查询
-    5. 数据库备份和还原
-    6. 约束
-    7. 级联操作
-    8. 标语表的关系
-    9. 常见面试题
-<hr>
-###### 1.排序 从小到大,或从大到小 默认从小到大 asc
-- 查询表信息
-`select * from user;`
-- 查询所有人的信息,按从小到大排序查看
-`select * from user order by math;`
-- 默认就是从小到大,如果要从大到小的话
-`select  * from user order by math desc;`
-- 按总分相加来排序的话
-`select * ,(math+english) as 总分 from user order by 总分;`
-###### 2.聚合函数演示
-关键字,count max sum min avg 
-如:
->select sum(english) english_sum,max(english) as maxEnglish, count(*) as peoples, avg(english) English_avg from user;
- 查询了总分 最值,人数,平均分.
-###### 3. 分页查询
-- 分页查询数据,每页显示两条数据共三页:
-select * from user limit 0,2; 
-第一个数据代表从 第0 个索引数据开始,查2个数据
-- 分页查询时排序
-select * from student order by math asc limit 0,4;
-分组查询可以用到having对分组的数据进行筛选
-where 和 having 的区别 :
-1. 数据查询方式不同where 对 行数据经行筛选, 而having 是对列经行 筛选
-2. 出现的位置不同 where 在group by 前面, having 在后面
-3. where 后面不可接聚合函数, having 可以;
-### 数据库的备份
-1. 命令行
-    + mysqldump -u用户名 -p密码 数据库>路径
-    + mysql -u用户名 -p密码 数据库<路径
-2. SQLyog的导入和导出
-####  约束
-- 作用
- 保证数据的正确性、有效性和完整性。
- 数据类型也可以看成数据约束的一种，起到限制数据类型的一种，但不够严格。
-     比如int age,限制age是整数，但不能限制是负数。
-- 分类
-    + 默认约束
- 关键字：default 默认值
- 当这个字段没有输入任何的值，则数据库使用默认的值
-    + 非空约束
- 约束某一列的值不能为null,必须有值。
-    + 主键约束
-用来标识记录的唯一性。
-- 设计原则
-1. 主键应当对用户没有意义的，因为主键是给程序猿看的，不是给用户使用的。
-2. 主键应当由计算机/数据库自动生成。
-3. 主键应当是单列的
-- 自增长字段
-    + 关键字`auto_increment`
-让某一整数列的值每次在当前的基础加1，从1开始。
-- 零填充
-    + 关键字 `ZEROFILL`
-整数列的数值不满指定的位数时用零填充。
-- 唯一约束
-    + 关键字 `unique`
-约束某一列的数据在一张表中不能出现相同的值。
-- 外键约束
-- 检查约束
-在用户输入完数据之后就立即检查数据的合法性，如果不合法就立即报错。
-MySQL不支持约束
-- 主键约束
-创建表的时候指定主键约束,在主键列后面 加上 `primary key` 
-````sql
-    create table 表名(
-    列名 数据类型 约束 primary key,
-    列名 数据类型 约束,
-    列名 数据类型 约束
-        )
+## MySQL约束和多表操作
+### 单表查询之排序查询
+- order by概述
+  - 作用：按指定的列排序，排序的列可以是表中的列名，也可以是select语句后指定的别名。
+  - 格式： order by 列名（别名）；
+    - asc ：升序，从上到下慢慢变大，**默认值**
+    - desc ：降序，从上到下慢慢变小
+- 注意事项 ： order by 子句应位于SELECT语句的 **结尾**
+### MySQL单表查询值聚合查询
+- 聚合函数概述
+  - 纵向查询，将指定列的所有值做运算得到一个结果
+- 常用的聚合函数：
+  - sum(); 求指定列的和
+  - max();求指定列的最大值
+  - min();求指定列的最小值
+  - avg();求指定列的平均值
+  - count();求指定列的记录数
+- **注意事项：**聚合函数都会排除是 **null**的值。
+- 举例,有如下数据 ![数据](image/聚合函数数据表.png "数据")
+``` sql
+# 1.查询学生总数
+select count(*) 学生总数 from student;
+# 2.查询年龄大于40的总数
+select count(*) 大于40的总数 from student where age>40;
+# 3. 查询学生数学成绩总分
+select sum(math) 数学成绩总分 from student;
+# 4. 查询学生数学成绩平均分
+select avg(math) 平均分 from student;
+# 5. 查询学生数学成绩最低分
+select min(math) 最低分 from student;
 ```
-指定主键列自动增长
-    格式:
-```sql
-create table 表名(
-列名 数据类型  primary key  auto_increment,
-列名 数据类型 约束,
-列名 数据类型 约束
-)
-```
-注意: 自动增长只能用在整形的主键列上
-特点: 当我们添加数据时候,不指定主键列,主键列数据都会在原来的基础长递增1
-
-
-
-
-
