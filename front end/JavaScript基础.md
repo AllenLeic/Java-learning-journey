@@ -24,10 +24,14 @@
 而随着服务器的强壮，虽然程序员更喜欢运行于服务端的脚本以保证安全，但JavaScript仍然以其跨平台、容易上手等优势大行其道。同时，有些特殊功能（如AJAX）必须依赖Javascript在客户端进行支持。随着引擎如V8和框架如Node.js的发展，及其事件驱动及异步IO等特性，JavaScript逐渐被用来编写服务器端程序。  
 
 3. 组成
+
+
 ![javascript组成](img/javascript组成.png "JavaScript组成")
-ECMAScript : 核心基础，标准。
-DOM：文档对象模型（Document object model)：用来操作网页元素的对象
-BOM: 浏览器对象模型(Browser Object Model):用来操作浏览器的对象
+
+
+- ECMAScript : 核心基础，标准。
+- DOM：文档对象模型（Document object model)：用来操作网页元素的对象
+- BOM: 浏览器对象模型(Browser Object Model):用来操作浏览器的对象
 4. 与Java的区别 ![与Java的区别](img/JavaScript与Java的区别.png "与Java的区别")
 - 如何理解基于对象和面向对象：
   - 面向对象语言： 封装，继承，多态，三大特征
