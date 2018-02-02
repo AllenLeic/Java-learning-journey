@@ -27,3 +27,5 @@ github 为我们编写了一些特定的 ![](image/ignore.png)
 3. git config --global user.name AllenLeic 修改全局配置的用户名字
 4. git config --global user.email leicong2015@outlook.com 修改全局配置的用户email
 5. git config -l  显示所有git config命令
+
+### Git配置SSH协议
