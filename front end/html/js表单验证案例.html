@@ -1,0 +1,152 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>js表单验证案例</title>
+	<style type="text/css">
+		table td {
+			border: 1px solid  black;
+		}
+		table {
+			border-collapse:collapse;
+		}
+		.true {
+			color: #00f;
+		}
+		.false {
+			color: #f00;
+		}
+	
+	</style>
+	<script type="text/javascript">
+		// 判断用户名格式的方法
+		var checkName = function (input) {
+		var regex = /^[a-zA-Z]{4,16}$/;
+		var userspan = document.getElementById("username");
+		var username = input.value;
+			if (regex.test(username)) {
+				userspan.innerHTML = "格式正确";
+				userspan.className = true;
+			} else {
+				userspan.innerHTML = "格式错误";
+				userspan.className = false;
+			}
+		}
+		// 判断密码的方法
+		var checkPassword = function (input) {
+			var regex = /^[a-zA-Z0-9]{6,20}$/;
+			var span = document.getElementById("password1");
+			if (regex.test(input.value)) {
+				span.innerHTML = "格式正确";
+				span.className = true;
+				return true;
+			} else {
+				span.innerHTML = "格式错误";
+				span.className = false;
+			}	
+		}
+		// 判断密码是否一致
+		var confirmPassword = function (pwd2) {
+			var pwd1 = document.getElementById("pwd1");
+			var span = document.getElementById("password2");
+			
+			if (pwd1.value == pwd2.value) {
+				span.innerHTML = "密码正确";
+				span.className = true;
+			} else {
+				span.innerHTML = "密码不同";
+				span.className = false;
+			}
+		}
+		// 确认邮箱格式
+		var confirmEmail = function (email) {
+			var span = document.getElementById("email");
+			var regex = /^\w+@\w+(.[a-zA-Z]{2,3}){1,2}$/;
+			if (regex.test(email.value)) {
+				span.innerHTML = "邮箱格式正确";
+				span.className = true;
+			} else {
+				span.innerHTML = "邮箱格式错误";
+				span.className = false;
+			}
+		}
+	</script>
+</head>
+<body>
+	<div width="50%">需求：<br>
+		<ul>
+			<li>姓名：只能英文字母开头，只能包含英文字母，长度4～16个字符。</li>
+			<li>密码：只能大小写字母和数字,6-20个字符。</li>
+			<li>邮箱: 符合邮箱地址的格式 ：/^\w+@\w+(.[a-zA-Z]{2,3}){1,2}$/。</li>
+		</ul>
+	</div>
+	<table border="1" width="50%">
+		<form action="第一个网页.html">
+		<tbody>
+		<tr>
+			<td width="25%">姓名：</td>
+			<td><input type="text" onblur="checkName(this)" />
+			<span id="username"></span>
+			</td>
+		</tr>
+		<tr>
+			<td>密码：</td>
+			<td ><input type="password" onblur="checkPassword(this)" id="pwd1")" />
+			<span id="password1"></span>
+			</td>
+		</tr>
+		<tr>
+			<td>确认密码：</td>
+			<td><input type="password" onblur="confirmPassword(this)" />
+			<span id="password2"></span>
+			</td>
+		</tr>
+		<tr>
+			<td >邮箱：</td>
+			<td><input type="text" onblur="confirmEmail(this)">
+			<span id="email"></span>
+			</td>
+		</tr>
+		<tr>
+			<td >性别：</td>
+			<td>
+				<input type="radio" name="gender"/> 男
+				<input type="radio" name="gender" /> 女
+				<span></span>
+			</td>
+		</tr>
+		<tr>
+			<td width="25%">爱好：</td>
+			<td>
+				<input type="checkbox" name="hobby"/> eat
+				<input type="checkbox" name="hobby" /> sleep
+				<input type="checkbox" name="hobby" /> play
+				<span></span>
+			</td>
+		</tr>
+		<tr>
+			<td>城市：</td>
+			<td>
+			<select name="city" id="city">
+				<option value="请选择">请选择</option>
+				<option value="北京">北京</option>
+				<option value="上海">上海</option>
+				<option value="广州">广州</option>
+				<option value="深圳">深圳</option>
+			</select>
+			</td>
+		</tr>
+		<tr>
+			<td>自我介绍：</td>
+			<td><textarea name="intro" id="intr" cols="20" rows="5"></textarea></td>
+		</tr>
+		<tr>
+			<td colspan="2" align="center">
+				<input type="submit" value="提交查询">
+			</td>
+		</tr>
+		</tbody>
+		</form>
+	</table>
+</body>
+</html>
