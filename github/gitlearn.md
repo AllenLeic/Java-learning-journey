@@ -22,12 +22,13 @@ github 为我们编写了一些特定的 ![](image/ignore.png)
 - git check-ignore -v [文件名]
 
 ### Git常用命令
-1. git status 查看git状态
-2. git log 查看本仓库的日志
-3. git config --global user.name AllenLeic 修改全局配置的用户名字
-4. git config --global user.email leicong2015@outlook.com 修改全局配置的用户email
-5. git config -l  显示所有git config命令
-6. git remote -v 查看远程仓库remote状态  
+- git status 查看git状态
+- git log 查看本仓库的日志
+- git config --global user.name AllenLeic 修改全局配置的用户名字
+- git config --global user.email leicong2015@outlook.com 修改全局配置的用户email
+- git config -l  显示所有git config命令
+- git remote -v 查看远程仓库remote状态 
+- git  
 
 ### Git配置SSH协议
 - 生成SSH 协议公钥和私钥
@@ -41,3 +42,25 @@ github 为我们编写了一些特定的 ![](image/ignore.png)
 - 首次推送会弹出：Are you sure you want to continue connecting (yes/no)? 
 - 手动输入yes，然后回车回车，确认就行了。
 - 如果推送成功的话在GitHub上的登陆状态能看到之前的SSH key已经变成了绿色图标了。
+
+### Git的HTTP协议下如何记住用户名
+- 一种方法：在git push origin master 中间加个-u变为`git push -u -origin master`  下次就自动记住了用户名和密码。
+- 存储凭证：输入`git config --global credential.helper wincred` 代表存储凭证
+
+### Git别名的使用
+- 以图形的方式打印个Git提交日志
+> git log --graph --pretty=format:'%h%  %ad | %s%d[%an]'  --date=short
+
+这个命令太长了，可以用别名替代。  
+- 配置方式
+`git config --global alias.ci commit`    
+  - 代表为commit 设置别名
+- 可以到主目录去用文件配置的方式配置
+  - cd ~ 
+  - vim .gitconfig
+  - 快速的编辑.gitconfig : vim ~/.gitconfig
+  - 在里面的alias下面写自己的别名配置文件
+
+### Git解决换行符提示的问题
+因为Linux和Windows和mac的换行符不一样所以会出现换行符警告提示。 
+输入命令`git config --global core.safecrlf false`  就解决了这个问题
