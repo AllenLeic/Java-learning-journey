@@ -156,15 +156,15 @@ $("A[属性名=值][属性名=值][属性名=值]"): 复合属性选择器，同
 ### 基本过滤器
 语法:
 >:first  第一个
-:last   最后一个
-:not(selector)   不包含满足注定选择器的
-:even       偶数,包含0
-:odd        奇数
-:eq(index)   获得第index个
-:gt(index)   索引大于index，不包含index
-:lt(index)   索引小于index的，不包含index
-:header     获得所有的标题元素：<h1>...<h6>
-:animated    获得正在执行的动画元素
+>:last   最后一个
+>:not(selector)   不包含满足注定选择器的
+>:even       偶数,包含0
+>:odd        奇数
+>:eq(index)   获得第index个
+>:gt(index)   索引大于index，不包含index
+>:lt(index)   索引小于index的，不包含index
+>:header     获得所有的标题元素：<h1>...<h6>
+>:animated    获得正在执行的动画元素
 
 查手册吧
 
@@ -181,9 +181,9 @@ $("A[属性名=值][属性名=值][属性名=值]"): 复合属性选择器，同
 ## jQuery的DOM操作方法
 ### html代码/文本/值的操作方法
 常用方法:
-> html()： 获取标签里的html代码: <h1><a href>百度一下</a></h1> 则获取到的<a href>百度一下</a>
-text()： 获得标签体的文本字符串，<h1><a href>百度一下</a></h1> 则获取到的：百度一下
-val()：设置value属性的值或获得value属性的值
+> html()： 获取标签里的html代码: `<h1><a href>百度一下</a></h1>` 则获取到的`<a href>百度一下</a>`
+`text()`： 获得标签体的文本字符串，`<h1><a href>百度一下</a></h1> `则获取到的：百度一下
+`val()`：设置`value`属性的值或获得`value`属性的值
 
 示例代码 :
 ```javascript
