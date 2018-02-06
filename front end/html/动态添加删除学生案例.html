@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>动态添加删除学生案例</title>
+	<style type="text/css">
+		table {
+			border-collapse:collapse;
+			text-align: center;
+			width: 50%;
+			line-height: 30px;
+			font-family: "微软雅黑";
+			border: 2px solid green;
+		}
+	</style>
+	<script type="text/javascript">
+			var addInfo = function () {
+				var tr = document.createElement("tr");
+				var td1 = document.createElement("td");
+				var td2 = document.createElement("td");
+				var td3 = document.createElement("td");
+				
+				var td4 = document.createElement("td");
+				td1.innerHTML = "张三" + Math.floor(Math.random() * 11);
+				td2.innerHTML = Math.floor(Math.random() * 41 + 60);
+				td3.innerHTML = Math.floor(Math.random() * 41 + 60);
+				td4.innerHTML = "<a href='javascript:void(0)' onclick='dinfo(this)'>删除</a>";
+				tr.appendChild(td1);
+				tr.appendChild(td2);
+				tr.appendChild(td3);
+				tr.appendChild(td4);
+				var tbody = document.getElementsByTagName("tbody")[0];
+				var last = document.getElementById('last');
+				tbody.insertBefore(tr,last);
+			}
+		// window.onload = function () {
+		// }
+		// // 删除
+		function dinfo(aElement) {
+			var rmtr = aElement.parentNode.parentNode;
+			var tbody = document.getElementsByTagName("tbody")[0];
+			// element.setAttribute(“属性名”,”属性值”)创建一个新的属性
+			tbody.removeChild(rmtr);
+		}
+	</script>
+</head>
+<body>
+	<table border="1" align="center">
+		<tr>
+			<th>姓名</th>
+			<th>语文</th>
+			<th>数学</th>
+			<th>操作</th>
+		</tr>
+		<tr>
+			<td>张三0</td>
+			<td>90</td>
+			<td>100</td>
+			<td><a href="#">删除</a></td>
+		</tr>
+		<tr id="last">
+			<td colspan="4">
+				<input type="button"  value="新增学员信息" onclick="addInfo()" />
+			</td>
+		</tr>
+	</table>	
+</body>
+</html>

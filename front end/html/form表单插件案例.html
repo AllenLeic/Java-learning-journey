@@ -1,0 +1,191 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+	<title>form表单插件案例.html</title>
+	<style type="text/css" >
+		p{text-align: center;font-size:24px;}
+			table{margin: 0 auto;border: 0;}
+			table tr{height:40px;border:0;}
+			table tr td{padding:0 14px;border:1px solid #999}
+			.error{color:red}
+		table {border-collapse:collapse;} 
+		#last_td {
+			text-align: center;
+		}
+	</style>
+	<script type="text/javascript" src="../js/jquery-1.11.1.js"></script>
+	<script type="text/javascript" src="../js/jquery.validate.min.js"></script>
+	<script type="text/javascript">
+		$.validator.addMethod("noChinese",function(value,element,param){
+			var regex = /[\u4e00-\u9fa5]/;
+			return !regex.test(value);	
+		});
+		$.validator.addMethod("idRule",function(value,element,param) {
+			/*
+			 value:要校验的值。
+			 element：元素对象
+			 param:使用规则时传递的参数
+			 */
+			// 身份证15，18位
+			//  /^\d{15}$|^\d{18}$/;	
+			eval("var regex = /^\d{" + param[0] + "}$|^\d{" + "param[1]" + "}$/");
+			return regex.test(value);
+		})
+		$(function () {
+			$("#empForm").validate({
+				rules:{
+					realname:"required",
+					username:{
+						required : true,
+						rangelength:[5,8],
+						
+					},
+					psw:{
+						required:true,
+						rangelength:[6,12],
+						// 不能包含中文字符。
+						noChinese:true
+					},
+					psw2:{
+						required:true,
+						equalTo:"#psw",
+					},
+					gender:"required",
+					age:{
+						required:true,
+						range:[26,50]
+					},
+					edu:"required",
+					birthday:{
+						required:true,
+						dateISO:true
+					},
+					email:{
+						required:true,
+						email:true
+					},
+					idcard:{
+						required:true,
+						idRule:[15,18]
+					}
+
+				},
+				messages:{
+					realname:"真实名字不能为空",
+					username:{
+						required:"登陆名不能为空",
+						rangelength:"登陆名长度应该再5-8之间",
+					},
+					psw:{
+						required:"密码不能为空",
+						rangelength:"密码长度为6-12位",
+						// 不能包含中文字符。
+						noChinese:"密码不能含中文"
+					},
+					psw2:{
+						required:"确认密码不能为空",
+						equalTo:"密码要前后一致"
+					},
+					gender:"性别为必选项",
+					age:{
+						required:"年龄为必填项",
+						range:"请输入26-50（含）之间的年龄"
+					},
+					edu:"请选择学历",
+					birthday:{
+						required:"请填写生日",
+						dateISO:"请按正确日期填写"
+					},
+					email:{
+						required:"请填写email",
+						email:"你输入的邮箱格式不正确"
+					},
+					idcard:{
+						required:"请填写身份证号码",
+						idRule:"身份证号码15或18位"
+					}
+
+				}
+			});
+		})
+	</script>	
+</head>
+<body>
+	 <p>员工信息录入</p>
+    <form name="empForm" id="empForm" method="post" action="第一个网页.html">
+        <table border=1>
+            <tr>
+                <td>真实姓名(不能为空 ,没有其他要求)</td>
+                <td><input type="text" id="realname" name="realname" />
+                </td>
+            </tr>
+            <tr>
+                <td>登录名(登录名不能为空,长度应该在5-8之间):</td>
+                <td><input type="text" id="username" name="username" /></td>
+            </tr>
+             <tr> 
+              <td>密码(不能为空,长度6-12字符或数字,不能包含中文):</td>
+              <td><input type="text" id="psw"  name="psw" /></td>
+            </tr>
+            <tr> 
+              <td>确认密码(不能为空,长度6-12字符或数字):</td>
+              <td><input type="text" id="psw2" name="psw2" /></td>
+            </tr>
+            <tr>
+                <td>性别(必选其一)</td>
+                <td>
+                    <input  type="radio" id="gender_male" value="m" name="gender"/>&nbsp;男&nbsp;&nbsp;
+                    <input  type="radio" id="gender_female" value="f" name="gender"/>&nbsp;女
+                    <label for="gender" generated="true" class="error" style="display: none;">性别必须选择一个</label>
+                </td>
+            </tr>
+            <tr>
+                <td>年龄(必填26-50):</td>
+                <td><input type="text" id="age" name="age" /></td>
+            </tr>
+
+            <tr> 
+              <td>你的学历:</td>
+              <td> <select name="edu" id="edu">
+                      <option value="">－请选择你的学历－</option>
+                      <option value="a">专科</option>
+                      <option value="b">本科</option>
+                      <option value="c">研究生</option>
+                      <option value="e">硕士</option>
+                      <option value="d">博士</option>
+                  </select>
+              </td>
+            </tr>
+
+            <tr> 
+              <td>出生日期(1982/09/21):</td>
+               <td><input type="text" id="birthday"  name="birthday" value="" /></td>
+            </tr>
+
+           <tr> 
+              <td>兴趣爱好:</td>
+              <td colspan="2"> 
+                  <input type="checkbox" name="hobby" id="qq1" value="0"/>&nbsp;乒乓球 &nbsp;
+                  <input type="checkbox" name="hobby" id="qq2" value="1" />&nbsp;羽毛球 &nbsp;
+                  <input type="checkbox" name="hobby" id="qq3" value="2" />&nbsp;上网 &nbsp;
+                  <input type="checkbox" name="hobby" id="qq4" value="3" />&nbsp;旅游 &nbsp;
+                  <input type="checkbox" name="hobby" id="qq5" value="4" />&nbsp;购物 &nbsp;
+                <label for="hobby" generated="true" class="error" style="display: none;"></label>
+              </td>
+            </tr>
+             <tr> 
+                  <td align="left">电子邮箱:</td>
+                  <td><input type="text" id="email" name="email" /></td>
+              </tr>
+              <tr> 
+                  <td align="left">身份证(15或18，15位全是数字，18位最后一位可以是X):</td>
+                  <td><input type="text" id="idcard" name="idcard" /></td>
+              </tr>
+            <tr>
+                <td colspan="2" id="last_td"><input type="submit"  name="firstname"  id="firstname" value="保存"></td>
+            </tr>
+        </table>
+</form>
+</body>
+</html>

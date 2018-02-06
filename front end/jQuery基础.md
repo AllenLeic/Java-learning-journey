@@ -189,3 +189,237 @@ jQuery对象转换成js对象，语法：jQuery对象.get(索引) 或jQuery对�
 ```javascript
 
 ```
+
+### html属性操作
+```javascript
+attr() ： 设置或获取属性值
+prop()：  设置或获取属性值,数据类型是boolean
+removeAttr()：删除属性
+removeProp()：删除属性
+```
+**如何选择attr()和prop()** 
+在一般情况下，获得boolean类型的属性true/false时，使用prop()方法。如：selected, checked等。获得其它类型的属性使用attr()。
+
+###  html的class属性操作
+本质是操作标签元素的class属性  
+```
+addClass(类样式名)  添加样式
+removeClass(类样式名)  删除样式
+toggleClass(类样式名)  切换样式，如果样式存在，则删除，否则添加
+```
+### html的样式操作
+css();添加或获取样式，相当于设置样式：style
+
+### html元素的创建和插入
+```javascript
+创建标签：$("完整的标签")：不是标签名，而是一个完整的标签，包含所有的属性和文本。
+append(): 相当于appendChild()，添加元素为当前元素的最后一个子元素。与当前元素是父子关系。
+prepend()：添加元素为当前元素的第一个子元素。与当前元素是父子关系
+before()：在当前元素的前面插入一个元素，与当前的元素是兄弟关系。
+after(): 在当前元素的后面插入一个元素，与当前的元素是兄弟关系。
+```
+
+### html元素的删除操作
+相关方法
+```javascript
+remove（）：删除本身(自杀)，哪个元素对象调用就删除哪个元素。 
+empty（）: 删除所有的子节点，本身还是存在
+```
+
+## 隔行变色和全选效果
+- 需求和效果如下
+  - 实现奇数行和偶数行的背景色不同，第一行除外
+  - 当鼠标移出移入这一行的时候，背景色发生变化
+    - 实现全选和反选的效果，同时要注意，如果点下面的复选框，全选框也要发生相应的变化。
+- 实现步骤
+  - 实现奇数行和偶数行的背景色不同，第一行除外
+  - 当鼠标移出移入这一行的时候，背景色发生变化
+  - 实现全选和反选的效果，同时要注意，如果点下面的复选框，全选框也要发生相应的变化。
+  - 定义偶数行和奇数行的两个类样式，分别指定不同的背景色。
+  - 给所有的tr的偶数行和奇数行添加类样式
+  - 都不要第1行，从第2行开始计算奇偶数。
+  - 鼠标移入事件时添加类样式，鼠标移出事件时删除类样式。
+  - 点全选框，所有名字为checkItem的复选框的checked属性设置为全选框的checked状态
+  - 给所有的复选框添加点击事件，如果当前没有选中，则全选框也不选中。如果选中，则设置一个标记  ，判断所有的复选项。如果有一项没有选中，则去掉全选框的选择状态。如果全部选中，则让全选框选中。
+  - 反选按钮，调用上面的方法，将所有的checkItem对象都点击一次。
+
+##  jQuery动画效果
+### 动画相关方法
+**元素的显示与隐藏**  
+- show(speed，fn);显示
+- hide(speed，fn);隐藏
+- toggle(speed，fn); 切换，如果一开始是显示状态，则隐藏，一个开始是隐藏状态，则变成显示状态。
+    // speed：显示速度，单位：毫秒。字符串常量：slow，normal，fast。
+    // 参数fn：动画完成之后调用的回调函数。
+**元素的滑动显示与隐藏**
+- slideDown(speed，fn); 显示，高度变大
+- slideUp（speed，fn); 隐藏
+- slideToggle（speed，fn);切换
+**元素的淡入淡出的显示和隐藏**
+- fadeIn(speed，fn); 淡入显示
+- fadeOut（speed，fn); 淡出隐藏
+- fadeToggle（speed，fn);切换
+
+
+## jQuery对象的遍历
+
+### 遍历的必要性
+- jQuery对象本身就是数组对象，通过jQuery选择器获得的对象都是满足该选择条件的对象数组，因此常常需要对jQuery对象进行遍历。
+
+### jQuery遍历方式
+
+#### 第一种
+- 使用原生JS凡是遍历：for循环遍历
+    for（var = index 0; index < jQuery对象.length;index ++){}
+
+#### 第二种
+- 通过jQuery对象的方法遍历，是jQuery特有的方式
+```javascript
+jQuery对象.each(function(index,element)) {
+  // index 是索引
+  // element: 遍历到的元素
+}
+```
+
+#### 第三种
+    - 通过jQuery的全局方法遍历,是jQuery特有的方式
+    $.each(jQuery对象,function(index,element)) {
+      // index : 索引值
+      // element: 遍历到的元素
+    }
+**注意:** 不管用那种方式遍历,得到的都是JS对象,如果要使用jQuery方法则需要转为jQuery对象。
+## jQuery的事件
+![jQuery常用事件](img/jQuery常用事件.png "jQuery常用事件")
+
+
+
+- 用之前的两种办法绑定的事件无法移除，所以如果有需要移除的需求的话，需要用新的绑定事件的方法。
+
+### 事件的动态绑定
+#### bind绑定事件
+语法：
+```JavaScript
+jQuery对象.bind("事件类型",回调函数);
+jQuery对象.bind({"事件类型1":回调函数,"事件类型2":回调函数.....});
+```
+- 需求案例：
+- 需求：给一个id为btn的按钮绑定一个点击事件和鼠标移入和移出事件。
+- 点击按钮：弹出一个对话框。
+- 鼠标移入：改变按钮标题的颜色为：红色
+- 鼠标移除：恢复按钮标题的颜色为：黑色
+
+#### on绑定事件
+语法：
+
+```javascript
+jQuery对象.on("事件类型",回调函数);
+jQuery对象.on({"事件类型1":回调函数,"事件类型2":回调函数.....});
+```
+基本用法和bind相同，不过有不同点
+
+#### band和on绑定事件的区别
+-  bind绑定只会绑定一开始就存在的元素，新添加的元素是不起作用的。
+-  on绑定在于即使是新添加的元素也会被绑定相应的事件。
+![选择器on和bind的区别.png](img/选择器on和bind的区别.png "选择器on和bind的区别.png")
+
+
+### 事件的解绑
+#### unband
+- 语法：
+```javascript
+jQuery对象.unbind("事件类型");  解绑一个事件
+jQuery对象.unbind("事件类型1" "事件类型2" ....) 同时解绑多个事件  多个事件类型之间使用空格分割。
+jQuery对象.unbind(); 不传参数，则表示解绑所有事件。
+```
+
+#### off
+- 和unbind的用法一样，一般配合on的绑定事件来用。
+![jQuery的off方法.png](img/jQuery的off方法.png "jQuery的off方法")
+
+
+
+### 事件的切换
+
+![jQuery的hover方法.png](img/jQuery的hover方法.png "jQuery的hover方法.png")
+
+
+## jQuery的案例
+### 左右互换案例
+[![jQuery左右互换案例.png](img/jQuery左右互换案例.png "jQuery左右互换案例.png")](html/jQuery左右互换案例.html)
+
+
+
+- 实现原理
+- 添加的实现：使用选择器，把左边选中的option，添加到右边的select的元素中。
+- 添加所有的实现：使用选择器，把左边所有的option，添加到右边的selected的元素中
+- 使用append()或appendTo()都可以，只是主操作对象不同。
+- append()方法本身是剪切，会删除原有的元素。如果要进行复制操作，则使用append(元素.clone());
+
+### 省市联动
+[![jQuery省市联动案例.png](img/jQuery省市联动案例.png "jQuery省市联动案例.png")](html/jQuery省市联动案例.html)
+
+
+
+## 表单验证插件
+### jQuery插件的概述
+​网络上有许多成熟的插件供开发者使用，插件就是将一些常用的功能进行封装，这些功能是要基于jQuery运行的，这些封装后的功能就叫做插件。而我们需要做的是学会该插件的使用即可。  
+**其中，jQuery的表单验证插件是一个比较常用的功能。**
+![jQuery插件介绍](img/jQuery插件介绍.png "jQuery插件介绍")
+
+
+
+### 表单验证插件-validation插件
+- 使用步骤
+1) 下载jquery-validation插件  
+2) 将该插件（也就是一个js文件）导入到我们的工程中  
+3) 在要使用验证插件的html中引入该js文件    
+  - 先导入jQuery(lib目录下)   
+  - 导入验证框架：jquery.validate.js或jquery.validate.min.js (在dist目录-  
+  - 如果要让默认信息提示中文，可以导入messages_cn.js (在dist\localization\目录下)  
+
+- 语法：
+
+```javascript
+$("form表单的选择器").validate({     
+    rules:{         
+        表单项name值:验证规则，         
+        表单项name值:验证规则，         
+        ... ...     
+    },     
+    messages:{         
+        表单项name值:错误提示信息，         
+        表单项name值:错误提示信息，         
+        .. ...     
+    } 
+})
+```
+
+- 常用校验规则
+
+![form表单插件](img/form表单插件常用规则.png "form表单插件常用规则.png")
+
+
+**注：如果有多个验证器，如果前一个验证器没有通过，则不会运行下一个验证器。**
+
+
+- 修改消息的显示位置
+  正常情况下，当此表单项验证不通过时，会将错误信息自动显示出来，jQuery验证插件会自动帮助我们控制它的显示与隐藏。当错误提示信息不按照我们预想的位置显示时，可以按照如下方式设置自定义错误显示标签的位置。  
+`<lable for="html元素name值" class="error" style="display:none">出错的信息</lable>  `
+
+
+### 自定义校验规则
+
+如果预定义的验证规则尚不能满足需求的话可以编写自定义验证规则.  
+
+步骤如下:  
+1. 使用$.validator.addMethod("验证规则名称",function(value,element,param));  
+    value：元素的value值  
+    element：元素对象  
+    param：验证规则的参数  
+    返回值如果是true，表示验证通过，为false表示验证失败    
+2. 在rules中通过验证规则名称使用验证规则    
+3. 在messages中定义该规则对应的错误提示信息
+[![表单验证插件-validation插件.png](img/表单验证插件-validation插件.png "表单验证插件-validation插件.png")](html/form表单插件案例.html)
+
+- eval()函数的用法
+![eval函数的用法.png](img/eval函数的用法.png "eval函数的用法.png")

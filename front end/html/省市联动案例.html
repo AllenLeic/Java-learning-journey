@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>省市联动案例</title>
+	<style text/css>
+		body {
+			font:16px "微软雅黑";
+			color: #00f;
+		}
+	</style>
+	<script type="text/javascript">
+		/*思路:
+		1. 定义一个数组用来存放对应的城市名字
+		2. 监听省份的变化，.selectedIndex获取索引。
+		3. 根据省份索引取出二维数组里面的一维数组
+		4. 把一维数组里面的元素取出来放入city选项里面输出
+		*/
+		
+			var CityArr = [
+					[],
+					["广州市","深圳市","佛山市","清远市"],
+	                ["长春市","白城市","松原市","四平市"],
+	                ["长沙市","益阳市","衡阳市"]];
+	        var city = document.getElementByName("city");
+	        function selectCity(select) {
+	        	var index = select.selectedIndex;
+	        	for (int i = 0; i < CityArr[index].length; i++) {
+	        		city.innerHTMl = "<option>" + CityArr[index][i] + "</option>";
+	        	}
+	        }
+		
+	</script>
+</head>
+<body>
+	<div>
+		<ul>
+			<li>案例需求：
+				<ul>
+					<li>
+						省份改变时，城市下拉框的可选值跟着改变。
+					</li>
+					<li>案例效果如下</li>
+				</ul>
+			</li>
+		</ul>
+	</div>
+	<div>
+		省份&#160;&#160;<select name="province" id="province" onchange="selectCity(this)">
+			<option>-请选择-</option>
+			<option>广东省</option>
+			<option>吉林省</option>
+			<option>湖南省</option>
+		</select>&#160;&#160;
+		城市&#160;&#160;<select name="city" id="city">
+			<option value="请选择">-请选择-</option>
+		</select>
+	</div>
+</body>
+</html>

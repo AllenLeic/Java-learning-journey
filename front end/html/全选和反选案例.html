@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>全选和反选案例</title>
+	<style type="text/css">
+		body {
+			font-family: "微软雅黑";
+		}
+		span {
+			color: green;
+		}
+	</style>
+	<script type="text/javascript">
+		// 全选按钮 只要触发事件，全部勾选
+		function allSelect() {
+			var items = document.getElementsByName("item");
+			var all = document.getElementById("all");
+				var status = all.checked;
+				for (var index in items) {
+					items[index].checked = status; 
+				}
+			}
+		// 反选按钮 (加功能，如果反选全选了，那么全选也勾上)
+		function invertSelect() {
+			var all = document.getElementById("all");
+			var items = document.getElementsByName("item");
+			for (var index in items) {
+				items[index].checked = !items[index].checked;
+			}
+			for (var index in items) {
+				if (items[index].checked == false) {
+					all.checked = false;
+					return;
+				} 
+			}
+			all.checked = true;
+		}
+		// 每次点击按钮触发事件 如果全部选上，全选按钮自动勾选
+		function ock() {
+			var items = document.getElementsByName("item");
+			var allclick = document.getElementById("all");
+			for (var index = 0 ; index  < items.length ;index++) {
+				if (items[index].checked == false) {
+					allclick.checked = false;
+					return;
+				} 
+			}
+			allclick.checked = true;
+		}
+		function buy() {
+			var result = document.getElementById("result");
+			var items = document.getElementsByName("item");
+			var money = 0;
+			for (var index = 0; index < items.length; index++) {
+				if (items[index].checked == true) {
+				money +=parseInt(items[index].value);
+				}
+			}
+			result.innerHTML = money;
+		}
+ 	</script>
+</head>
+<body>
+	
+		<h2>商品价格列表</h2>
+		<input type="checkbox" name="item" value="1500" onclick="ock()" />山地自行车1500	<br/>
+		<input type="checkbox" name="item" value="200"  onclick="ock()" />时尚女装200	<br/>
+		<input type="checkbox" name="item" value="3000" onclick="ock()" />笔记本电脑3000	<br/>
+		<input type="checkbox" name="item" value="800"  onclick="ock()" />情侣手表800	<br/>
+		<input type="checkbox" name="item" value="2000" onclick="ock()" />桑塔纳2000	<br/>
+		<hr>
+		<input type="checkbox" id="all" onclick="allSelect()" />全选/全不选
+		<input type="button" id="invert" value="反选" onclick="invertSelect()" />
+		<input type="submit" value="结账" onclick="buy()"> 
+		<span id="result"></span>
+	
+</body>
+</html>

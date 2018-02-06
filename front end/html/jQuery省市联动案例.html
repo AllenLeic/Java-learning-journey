@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+	<title>jQuery省市联动案例</title>
+	<style type="text/css" >
+		/* .. css style */ 
+	</style>
+	<script type="text/javascript" src="../js/jquery-1.11.1.js"></script>
+	<script type="text/javascript" src="../js/jquery.validate.min.js"></script>
+	<script type="text/javascript">
+		// ...//准备城市的二维数组
+		var areas = 
+		[
+			["海淀区","昌平区","朝阳区"], //北京
+			["南开区","和平区","西青区"], //天津
+			["浦东区","浦西区","闵行区"], //上海
+			["天河区","番禺区","海珠区"] //广州
+		];
+		/*分析：
+		1. 获取选择的city
+		2. 根据选中的city从数组中拿出对应的area
+		3. 清空area的之前的选项
+		4. 用append方法加进去
+
+		*/
+		// 代码实现：
+		$(function () {
+			$("#city").change(function () {
+				var index = $("#city option:selected").val();
+				$("#area option:not(:first)").remove();
+				for (var i = 0; i < areas[index].length; i++) {
+					var area = $("<option >"+areas[index][i] +"</option>");
+					$("#area").append(area);
+				}
+				
+			});
+		})
+			 
+	</script>	
+</head>
+<body>
+	 <!-- 城市 -->
+        <!-- this当前对象：select- -->
+        <select id="city" name="city">
+            <option value="">--请选择城市--</option>
+            <option value="0">北京市</option>
+            <option value="1">天津市</option>
+            <option value="2">上海市</option>
+            <option value="3">广州市</option>
+        </select>
+        <!-- 区域 -->
+        <select id="area" name="area">
+            <option>--请选择区域--</option>
+        </select>
+</body>
+</html>
