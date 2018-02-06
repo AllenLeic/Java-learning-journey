@@ -1,4 +1,3 @@
-[TOC]
 # 记录一下个人学习GitHub的经历
 - [x]  为什么要学习GitHub？
 - [ ]  GitHub入门
@@ -22,13 +21,22 @@ github 为我们编写了一些特定的 ![](image/ignore.png)
 - git check-ignore -v [文件名]
 
 ### Git常用命令
-- git status 查看git状态
-- git log 查看本仓库的日志
-- git config --global user.name AllenLeic 修改全局配置的用户名字
+`[]`里面的是需要根据情况输入的值
+
+|          git命令     | git 命令的含义 |
+|:-------------------:|:--------------:|
+|git status           |查看git状态      |
+| git log             |查看本仓库的日志 |
+|git config --global user.name [AllenLeic]|修改全局配置的用户名字|
+
+
 - git config --global user.email leicong2015@outlook.com 修改全局配置的用户email
 - git config -l  显示所有git config命令
 - git remote -v 查看远程仓库remote状态 
-- git  
+- git 调用出git的帮助
+- git help -a 列出git能使用的命令
+- git blame 文件名   查看文件的所有提交信息
+- git blame -L 开始行号，结束行号
 
 ### Git配置SSH协议
 - 生成SSH 协议公钥和私钥
