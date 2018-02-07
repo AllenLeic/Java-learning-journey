@@ -76,7 +76,27 @@ github 为我们编写了一些特定的 ![](image/ignore.png)
 |`git mv [a] [b]`       |重命名 ， 把a改为b|
 |`git mv [a] ./demos/`  | 把a文件移动到demos文件夹|
 |`mkdir [文件名]`        |创建文件夹|
-|
+|`git commit -m "message"`| 提交暂存区的版本|
+|`git commit -a -m "message"` | git中已经有之前的版本了|
+|`git commit -am "message"` | 同上，只是简化了代码|
+
+### git commit 提交的时候的一些注意事项
+- git commit 提交的时候的一些建议和原则。
+![commit提交的一些建议.png](img/commit提交的一些建议.png "commit提交的一些建议.png")
+- git commit 时候message的书写建议和规范。
+- 使用格式化的message有什么好处？
+  1. 帮助我们快速浏览，提供更多的信息
+  2. 可以很方便的查找某一类信息
+  3. 可以很方便的提取出change log
+- 如何去写规范化的message
+`docs(文件名): fix grammar `
+
+`<body>`
+
+`<foot> 可以用closeed # 关闭issues`    
+- angular规范， angular是Google公司推出的一个框架，目前开源社区最广泛的规范。
+![angular规范书写message.png](img/angular规范书写message.png "angular规范书写message.png")
+
 
 
 ### Git配置SSH协议
