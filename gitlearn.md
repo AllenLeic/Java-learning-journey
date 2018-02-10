@@ -1,15 +1,14 @@
 # 记录一下个人学习GitHub的经历
 - [x]  [github介绍](#github介绍)
 - [x]  [Git常用命令](#Git常用命令)
-- [x]  [Git配置SSH协议](#Git配置SSH协议)
+- [x]  [Git配置SSH协议](#git-ssh)
 - [x]  [markdown语法](MarkDown高级语法.md)
 - [x]  git GUI工具
 - [x]  git 进阶教程
   * - [x]  [git diff ](#gitdiff命令讲解) 
   * - [x]  [git commit 的message规范 ](#git-commit提交的时候的一些注意事项)
-  * - [x]  [Git配置SSH协议](#Git配置SSH协议)
-  * - [x]  [Git别名的使用](#Git别名的使用)
-  * - [x]  [Git 的回撤操作](#Git的回撤操作)
+  * - [x]  [Git别名的使用](#git别名的使用)
+  * - [x]  [Git 的回撤操作](#git的回撤操作)
 ## github 入门
 ### GitHub介绍
 GitHub是基于git的一个大型托管网站，是全球最大的 **开源社区** "男性交友平台"。 :smile:  
@@ -112,7 +111,7 @@ github 为我们编写了一些特定的 ![](image/ignore.png)
 ![gitdiff命令讲解.png](img/gitdiff命令讲解.png "gitdiff命令讲解.png")
 
 
-### Git配置SSH协议
+### Git-SSH
 - 生成SSH 协议公钥和私钥
 - `ssh-Keygen -t rsa -C "leicong2015@outlook.com" ` 
 - 将用户主目录下面的 .ssh 文件夹下面id_rsa.pub 打开，把上面的key复制下来放到  
