@@ -2,11 +2,14 @@
 - [x]  [github介绍](#github介绍)
 - [x]  [Git常用命令](#Git常用命令)
 - [x]  [Git配置SSH协议](#Git配置SSH协议)
-- [x]  [markdown语法](Markdown高级语法.md)
-- [ ]  git GUI工具
-- [ ]  git 进阶教程
-- [ ]  
-
+- [x]  [markdown语法](MarkDown高级语法.md)
+- [x]  git GUI工具
+- [x]  git 进阶教程
+  * - [x]  [git diff ](#gitdiff命令讲解) 
+  * - [x]  [git commit 的message规范 ](#git commit 提交的时候的一些注意事项)
+  * - [x]  [Git配置SSH协议](#Git配置SSH协议)
+  * - [x]  [Git别名的使用](#Git别名的使用)
+  * - [x]  [Git 的回撤操作](#Git 的回撤操作)
 ## github 入门
 ### GitHub介绍
 GitHub是基于git的一个大型托管网站，是全球最大的 **开源社区** "男性交友平台"。 :smile:  
