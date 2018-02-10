@@ -6,10 +6,10 @@
 - [x]  git GUI工具
 - [x]  git 进阶教程
   * - [x]  [git diff ](#gitdiff命令讲解) 
-  * - [x]  [git commit 的message规范 ](#git-commit-提交的时候的一些注意事项)
+  * - [x]  [git commit 的message规范 ](#git-commit提交的时候的一些注意事项)
   * - [x]  [Git配置SSH协议](#Git配置SSH协议)
   * - [x]  [Git别名的使用](#Git别名的使用)
-  * - [x]  [Git 的回撤操作](#Git-的回撤操作)
+  * - [x]  [Git 的回撤操作](#Git的回撤操作)
 ## github 入门
 ### GitHub介绍
 GitHub是基于git的一个大型托管网站，是全球最大的 **开源社区** "男性交友平台"。 :smile:  
@@ -89,7 +89,7 @@ github 为我们编写了一些特定的 ![](image/ignore.png)
 
 
 
-### git commit 提交的时候的一些注意事项
+### git-commit提交的时候的一些注意事项
 - git commit 提交的时候的一些建议和原则。
 ![commit提交的一些建议.png](img/commit提交的一些建议.png "commit提交的一些建议.png")
 - git commit 时候message的书写建议和规范。
@@ -146,7 +146,7 @@ github 为我们编写了一些特定的 ![](image/ignore.png)
 输入命令  
 `git config --global core.safecrlf false`  就解决了这个问题
 
-### Git 的回撤操作
+### Git的回撤操作
 ![git回撤操作图解](img/git回撤操作图解.png "git回撤操作图解")
 
 ![git-reset-HEAD~3.png](img/git-reset-HEAD~3.png "git-reset-HEAD~3.png")
