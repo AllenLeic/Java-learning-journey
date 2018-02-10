@@ -57,6 +57,8 @@ github 为我们编写了一些特定的 ![](image/ignore.png)
 |`git statud -sb`       |用简短的方式查看git暂存区状态|
 |`git log`             |查看本仓库的日志 |
 |`git log [-5]`         |查看最近的5条日志|
+|`git log [文件名]`      |只看这个文件提交的历史|
+|`git log --grep [messages]` | 根据messages来过滤查看的信息|
 |`git config --global user.name [用户名]`|修改全局配置的用户名字|
 |`git config --global user.email [邮箱名字]`|修改全局配置的用户email|
 |`git config -l`       |显示所有`git config`的子命令|
@@ -79,6 +81,10 @@ github 为我们编写了一些特定的 ![](image/ignore.png)
 |`git commit -m "message"`| 提交暂存区的版本|
 |`git commit -a -m "message"` | git中已经有之前的版本了|
 |`git commit -am "message"` | 同上，只是简化了代码|
+|`git show HEAD`         |HEAD相当于指针，目前指向的是当前提交，如果要看上一条提交就在HEAD后面加^或~1|
+|`git show [哈希值]`       |根据哈希值显示提交内容|
+
+
 
 ### git commit 提交的时候的一些注意事项
 - git commit 提交的时候的一些建议和原则。
@@ -89,6 +95,7 @@ github 为我们编写了一些特定的 ![](image/ignore.png)
   2. 可以很方便的查找某一类信息
   3. 可以很方便的提取出change log
 - 如何去写规范化的message
+
 `docs(文件名): fix grammar `
 
 `<body>`
@@ -98,7 +105,8 @@ github 为我们编写了一些特定的 ![](image/ignore.png)
 ![angular规范书写message.png](img/angular规范书写message.png "angular规范书写message.png")
 
 
-
+### gitdiff命令讲解
+![gitdiff命令讲解.png](img/gitdiff命令讲解.png "gitdiff命令讲解.png")
 ### Git配置SSH协议
 - 生成SSH 协议公钥和私钥
 - `ssh-Keygen -t rsa -C "leicong2015@outlook.com" ` 
@@ -134,3 +142,31 @@ github 为我们编写了一些特定的 ![](image/ignore.png)
 因为Linux和Windows和mac的换行符不一样所以会出现换行符警告提示。 
 输入命令  
 `git config --global core.safecrlf false`  就解决了这个问题
+
+### Git 的回撤操作
+![git回撤操作图解](img/git回撤操作图解.png "git回撤操作图解")
+
+![git-reset-HEAD~3.png](img/git-reset-HEAD~3.png "git-reset-HEAD~3.png")
+
+
+- 回撤暂存区内容到工作目录
+  - git reset HEAD  暂存区stage到working directory（处理暂存区和工作目录）
+
+- 回撤提交到暂存区
+  - git reset HEAD --soft
+  - git reset HEAD^ --soft 这个是把最后一次commit 从history撤回
+  - git reset `[hash值]` --hard 把版本退回到这个hash值这个版本
+- 回撤提交，放弃更改
+  - git reset HEAD --hard
+
+- 回撤远程仓库，-f 即 --force
+  - git push -f （强行把本地的仓库和远程仓库同步，让远程仓库变成和本地仓库一样）
+
+- 回撤上一次提交
+  - git add .
+  - git commit --amend -m "message"
+
+
+- 变基操作，改写历史提交
+  - git rebase -i HEAD~3 【-i 是交互性的变基】
+  会弹出一个vim编辑窗口 然后根据里面的提示，编辑操作是非常强大的。
