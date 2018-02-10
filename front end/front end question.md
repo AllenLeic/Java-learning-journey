@@ -7,3 +7,6 @@
 4. 表格嵌套注意事项，子表格要要放到父表格的`<td></td>`标签里面，不然表格嵌套就不成功
 
 - jQuery表单验证的自定义规则，addMethod(a,b,d)方法是jQuery的方法还是表单插件的方法？
+- 答： 是validator的表单插件
+
+5. 加bootstrap的栅格div 加row 和不加row 为什么不一样。
