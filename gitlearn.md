@@ -174,3 +174,42 @@ github 为我们编写了一些特定的 ![](image/ignore.png)
 - 变基操作，改写历史提交
   - git rebase -i HEAD~3 【-i 是交互性的变基】
   会弹出一个vim编辑窗口 然后根据里面的提示，编辑操作是非常强大的。
+
+### git的分支操作
+- 分支简介
+![git分支操作介绍.png](img/git分支操作介绍.png "git分支操作介绍.png")
+
+
+git 的分支功能是非常强大的，分支有长期分支，短期分支。但是我们要注意不能滥用分支。
+- 示例操作
+![git分支操作示例01.png](img/git分支操作示例01.png "git分支操作示例01.png")
+
+
+![git分支操作示例02.png](git分支操作示例02.png "git分支操作示例02.png")
+
+
+
+- 冲突解决
+  - 要点：
+1. 在不同分支上，修改同一个文件；
+2. 不同的人，修改了同一个文件；
+3. 不同的仓库，修改了同一个文件；
+4. 冲突只在合并分支的时候才会发生；
+5. 发生冲突并不可怕，冲突的代码不会丢失；
+6. 解决冲突，重新提交，commit时不要给message；
+7. 冲突信息的格式；
+- 分支命令
+  - git branch 的子命令
+    - git branch --merged  查看已合并的分支
+    - git branch --on-merged 查看未合并的分支
+  - 列出远程合并的分支
+    - git branch -r --merged 
+  - 取出远程foo分支
+    - git branch -t origin/foo  
+  - 删除远程分支
+    - git push origin :`<remote branch>`
+    - git fetch -p
+  - 合并分支
+    - git merge `<branch name>`
+  - 合并分支，拒绝fast forward，产生合并的commmit
+    - git merge --no-ff
