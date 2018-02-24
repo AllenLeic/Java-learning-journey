@@ -48,10 +48,12 @@ HTTP协议的组成部分
 ![HTTP协议的组成部分](img/HTTP协议的组成部分.png "HTTP协议的组成部分")
 
 ### HTTP请求的组成
-1. get 方法的请求头
+1. get 方法的请求头  
+
 ![get方法的请求头](img/get方法的请求头.png "get方法的请求头")
 
-2. post方法的请求头
+2. post方法的请求头  
+
 ![post方法的请求头](img/post方法的请求头.png "post方法的请求头")
 
 3. HTTP请求的三个组成部分
@@ -80,9 +82,10 @@ HTTP协议的组成部分
 由服务器发送给浏览器的所有的数据
 
 ### 响应的信息组成
-1. 响应行
-2. 响应头
-3. 响应体
+1. 响应行  
+2. 响应头  
+3. 响应体   
+
 ![响应信息的组成](img/响应信息的组成.png "响应信息的组成")
 
 ### 响应行
@@ -91,7 +94,7 @@ HTTP协议的组成部分
 2. 状态码 200
 3. 状态信息 OK
 
-- 常用的状态码的含义
+- 常用的状态码的含义  
 ![2018-02-24_200605](img/2018-02-24_200605.png "2018-02-24_195924")
 
 
@@ -104,7 +107,7 @@ HTTP协议的组成部分
 ## 软件的架构
 
 ### BS和CS概述
-1. **CS的特点：**
+1. **CS的特点：**  
 ![CS的特点](img/CS的特点.png )
 
 Client Server 客户端/服务器模式  
@@ -213,7 +216,7 @@ public class MyTomcat extends Thread {
 另一个常用的Web服务器是IBM公司的WebSphere，支持JavaEE规范。  
 ![webSphere](img/webSphere.png )
 
-3) 其他：
+3) 其他：  
 ![2018-02-24_203432](img/2018-02-24_203432.png )  
 
 4) Tomcat服务器： **免费开源**
@@ -289,14 +292,14 @@ public class MyTomcat extends Thread {
 
 ## Servlet的开发
 ### JavaWeb的开发步骤
-1. JavaWeb的开发步骤
+1. JavaWeb的开发步骤  
   创建项目：项目命名、项目所在目录、项目的JavaSE和JavaEE版本  
 ![Servlet开发步骤之创建项目](img/Servlet开发步骤之创建项目.png "Servlet开发步骤之创建项目")  
 
-2. 选择Java的源代码和字节码的目录
+2. 选择Java的源代码和字节码的目录  
 ![Servlet开发步骤之选择源码](img/Servlet开发步骤之选择源码.png "Servlet开发步骤之选择源码")  
 
-3. 项目的访问地址，网页所在的文件夹
+3. 项目的访问地址，网页所在的文件夹  
 ![Servlet开发步骤之访问地址](img/Servlet开发步骤之访问地址.png "Servlet开发步骤之访问地址")  
 
 ### 什么是Servlet
@@ -304,19 +307,19 @@ public class MyTomcat extends Thread {
 
 
 ### 开发Servlet程序
-1. Web项目结构：
+1. Web项目结构：  
 ![web项目结构](img/web项目结构.png "web项目结构")  
 
 - lib: 用于存放我们项目开发过程中用到的第3方的jar库
 - classes: 用于存放字节码文件  
 - web.xml: 当前项目的配置文件，servlet就需要在这里进行配置
 
-2. 利用MyEclipse开发Servlet的步骤
+2. 利用MyEclipse开发Servlet的步骤  
 
 - myeclipse自带了tomcat,但是一个简化版，没有欢迎页面，我们使用自己外部的tomcat。  
 ![myeclipse部署tomcat](img/myeclipse部署tomcat.png "myeclipse部署tomcat")  
 
-在myeclipse中启动Tomcat
+在myeclipse中启动Tomcat   
 ![myeclipse中启动tomcat.png](img/myeclipse中启动tomcat.png "myeclipse中启动tomcat.png")  
 
 - 开发servlet步骤
@@ -360,12 +363,12 @@ public class HelloServlet extends HttpServlet {
 
 ```
 
-5. 编写文件web.xml
+5. 编写文件web.xml  
 ![编写配置文件web.xml](img/编写配置文件web.xml.png "编写配置文件web.xml")  
 
-6. 部署项目到tomcat，点击按钮
+6. 部署项目到tomcat，点击按钮  
 ![2018-02-24_224012.png](img/2018-02-24_224012.png )  
 
-7. 运行Tomcat，在浏览器中输入地址
+7. 运行Tomcat，在浏览器中输入地址  
 
 ![第一个servlet程序](img/第一个servlet程序.png "第一个servlet程序")  
