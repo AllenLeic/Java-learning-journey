@@ -9,7 +9,7 @@ A servlet is a small Java program that runs within a Web server. Servlets receiv
 
 ### Servlet生命周期
 - Servlet创建的时机：
-**实例化（构造方法）、初始化（init方法）、服务（service）、销毁（destroy）**
+**实例化（构造方法）、初始化（init方法）、服务（service）、销毁（destroy）**  
 ![Servlet生命周期](/img/Servlet生命周期.png )
 
 ### Servlet的运行过程
@@ -853,6 +853,7 @@ public class ReadConfigServlet extends HttpServlet {
 
 }
 ```
-3. 结果： 
+3. 结果：  
+
 ![servletconfig案例结果](img/servletconfig案例结果.png "servletconfig案例结果")  
 
