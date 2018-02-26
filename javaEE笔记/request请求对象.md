@@ -391,10 +391,12 @@ public class Demo6Code {
     }
 
 }
-3.6.4   GET方式乱码解决方案一：
+```
+- GET方式乱码解决方案一：
 使用一句话：new String("乱码".getBytes("iso-8859-1"), "utf-8")
 1)  与页面编码要一致
 2)  代码：
+```
 package com.itheima.servlet;
 
 import java.io.IOException;
@@ -471,10 +473,10 @@ public class Demo7GetParamServlet extends HttpServlet {
 - **注：** 表单项的名字与JavaBean的属性名要相同。  
 
 ## [案例：实现添加书籍的功能](https://github.com/AllenLeic/project-javalearning)  
-1)  向数据库中添加一本新的图书，名称和作者不能为空，日期使用yyyy-MM-dd的格式，图书类别：1计算机2小说 3杂项，所属分类必须要选择。  
-2)  表单项使用jQuery进行验证。所有表单数据正确的话，提交给BookServlet  
-3)  BookServlet中得到所有表单项的数据，封装成Book对象  
-4)  使用三层结构将表单的数据写到数据库中  
+1. 向数据库中添加一本新的图书，名称和作者不能为空，日期使用yyyy-MM-dd的格式，图书类别：1计算机2小说 3杂项，所属分类必须要选择。  
+2. 表单项使用jQuery进行验证。所有表单数据正确的话，提交给BookServlet  
+3. BookServlet中得到所有表单项的数据，封装成Book对象  
+4. 使用三层结构将表单的数据写到数据库中  
 
 ### 1.项目的三层架构
 ![添加书籍功能的三层架构](img/添加书籍功能的三层架构.png "添加书籍功能的三层架构")  
@@ -600,10 +602,10 @@ SELECT * from book;
 `request.getRequestDispatcher("/get").forward(request, response);`  
 
 - 转发的特点：  
-  1)  地址栏显示的是上一个请求的地址  
-  2)  请求次数：1次  
-  3)  使用的是服务器端的根目录：http://localhost:8080/项目名/  
-  4)  请求域不会丢失  
+  - 地址栏显示的是上一个请求的地址  
+  - 请求次数：1次  
+  - 使用的是服务器端的根目录：http://localhost:8080/项目名/  
+  - 请求域不会丢失  
 
 ### 重定向
 - 什么是重定向
@@ -629,7 +631,7 @@ SELECT * from book;
 
 
 ### 面试题：转发和重定向的区别
-![转发和重定向的区别](img/转发和重定向的区别 "转发和重定向的区别")  
+![转发和重定向的区别](img/转发和重定向的区别.png "转发和重定向的区别")  
 
 - 问：转发或重定向后续的代码是否还会运行？  
   无论重定向或是转发后面的代码都会执行
