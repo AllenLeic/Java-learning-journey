@@ -6,6 +6,6 @@
 ![Servlet和ServletConfig](img/Servlet和ServletConfig.png "Servlet和ServletConfig")  
 
 ## [request请求对象](request请求对象.md)  
-![request请求对象](img/request请求对象.png "request请求对象")  
+![request请求对象](img/request对象总结.png "request请求对象")  
 
 
