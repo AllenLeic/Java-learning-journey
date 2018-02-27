@@ -19,6 +19,7 @@
 
 [ :point_up: 回到顶部](#这是对jaee学习的总结) 
 
-## [servletcontext和response对象](#ServletContext和response.md)  
+## [servletcontext和response对象](ServletContext和response.md)  
+![servletcontext和response对象](img/servletcontext和response对象.png "servletcontext和response对象")  
 
 [ :point_up: 回到顶部](#这是对jaee学习的总结) 
