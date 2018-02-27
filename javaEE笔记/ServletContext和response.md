@@ -123,10 +123,11 @@ public class ServletContextServlet extends HttpServlet {
 - 需求 ：Chrome调用OneServlet向上下文域中添加数据，另一个浏览器FireFox调用TwoServlet读取数据，第三个RemoveServlet删除上下文域中的数据(不同的浏览器相当于不同的用户)  
 
 ### 案例：得到当前是第几个登陆
-- 原理：
+- 原理：  
+
 ![get-the-principle-user-who-logined](img/get-the-principle-user-who-logined.png "get-the-principle-user-who-logined")  
 
-- 实现过程
+- 实现过程  
 ![implement-process-about-who-logined](img/implement-process-about-who-logined.png "implement-process-about-who-logined")  
 1. 在LoginServlet的init()方法中创建count=0，并且将值放入上下文域中.
 2. 在登录成功的代码中从上下文域中取出count，并且加1，再更新上下文域中的值。
