@@ -6,7 +6,6 @@
 - [request请求对象](#request请求对象) 
 - [servletcontext和response对象](#servletcontext和response对象)
 
-<hr/>
 ## [HTTP协议和Tomcat](HTTP协议&Tomcat.md)
 ![HTTP协议和Tomcat](img/HTTP协议和Tomcat.png "HTTP协议和Tomcat")  
 
