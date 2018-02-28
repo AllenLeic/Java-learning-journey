@@ -337,7 +337,8 @@ public class CountServlet extends HttpServlet {
   - 得到文件的输入流
   - 得到response的输出流
   - 写出到浏览器端
-  - 下载文件名使用汉字的情况
+  - 下载文件名使用汉字的情况  
+  
 |URL编码有关的方法|描述|
 |:---------------:|:---:|
 |java.net.URLEncoder.encode(字符串,"utf-8")|对字符串进行utf-8编码|
