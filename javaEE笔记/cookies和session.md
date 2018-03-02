@@ -246,3 +246,9 @@ response.addCookie(id);
 
 ## 6. sevlet三个作用域总结
 ![three-scope-summary](img/three-scope-summary.png "three-scope-summary")  
+
+
+## session钝化和激活
+如果Tomcat正常退出，会把内存中的session以对象的方式存储到硬盘中叫钝化；  
+下次正常启动时再读取硬盘上面的SESSION.ser 叫激活。  
+强制关闭时不会出现钝化。
