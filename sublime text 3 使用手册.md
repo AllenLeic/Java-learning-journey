@@ -1,12 +1,16 @@
+# sublime text 3 使用方式
+<!-- MarkdownTOC style="ordered" -->
+
+1. [常用快捷键](#常用快捷键)
+1. [使用模板](#使用模板)
+1. [如何开启vi模式](#如何开启vi模式)
+1. [如何配置Markdown的文档编写环境](#如何配置markdown的文档编写环境)
+
+<!-- /MarkdownTOC -->
 
 
-## sublime text 3 使用方式
-1. 配置和下载
-2. <a href="#" id="2">常用快捷键</a>
-3. <a href="#" id="3">自定义功能</a>
-
-
-## <p id="2">2.常用快捷键</p>
+<a id="常用快捷键"></a>
+## <p id="2">常用快捷键</p>
 - CTRL + 数字1~6表示 标题大小,1代表一级标题
 ctrl + shift + d : 向下快速复制一行
 ctrl + shift + k : 快速删除整行
@@ -24,6 +28,7 @@ ctrl + shift + ↓ : 整行向下移动
 完成，基本的编辑就可以了
 
 
+<a id="使用模板"></a>
 ## 使用模板
 1. 工具--→插件开发--→新建代码段--→会出来一个文件如下
 ```snippet
@@ -47,11 +52,13 @@ Hello, ${1:this} is a ${2:snippet}.
 6. `Hello, ${1:this} is a ${2:snippet}.`这段代码的含义如下
   - `${1:this}` :代表光标在这个地方 在代码上放`${1}`就行，如果需要通时编辑几个光标就弄重复的相同的`${1}`，如果想光标快速跳转到下一光标可以放`${2},${3}`然后按table键可以把光标从1移到2上面去，按esc解除光标快速移动
 
+<a id="如何开启vi模式"></a>
 ## 如何开启vi模式
 
 1. 在setting里面把package ignore 里面的vintage给去掉
 2. 然后在下面加上`"vintage_start_in_command_mode": true,`这样就可以了，因为是 json 格式，所以只要语法不错就可以了，这是设置的一打开sublime text 3 就进入command模式，也就是命令模式。  
 
+<a id="如何配置markdown的文档编写环境"></a>
 ## 如何配置Markdown的文档编写环境  
 
 主要是几个插件的下载和基本的配置 **插件的配置最好是把所有的默认配置复制过去再修改，不然有些插件直接不会生效**   
@@ -59,16 +66,48 @@ Hello, ${1:this} is a ${2:snippet}.
 1. 通过package control 下载 `Markdown Editing`，和`Markdown Preview`，这样就可以预览和编写 markdown 文档了。`Markdown TOC`是一个可选的插件
 2. `Markdown Editing`的配置 
 3. `Markdown Preview`的使用 `ctrl +shift + p` 搜索`markdown preview` 然后就有选项出来了。GFM 格式需要自己设置  
+4. 解决中文乱码的问题，设置这一项 `"uri_encoding": false,`
+下面是经过测试可以在GitHub上面正确使用的配置，直接 copy 后然后放到自己的 MarkdownTOC 的 user 设置中就可以了。 要全部copy  
 ```json
 {
   "defaults": {
-    "autolink": true,
+    "autoanchor": true,
+    "autolink": true,// 这是生成自动链接的。
     "bracket": "round",
-    "lowercase": "only_ascii",
-    "markdown_preview": "github"
-  }
+    "levels": [1,2,3],// 这是目录的深度，最多是6层
+    "indent": "\t",  // 目录换行
+    "remove_image": true,  // 移除目录的图片
+    "link_prefix": "",  // 这是链接前缀
+    "bullets": ["-"],  // 这是代表空格使用什么连接。
+    "lowercase": "only_ascii", // 这是关于是否转换为小写的设置。
+    "style": "unordered",  // 这是代表生成的目录是否是有序的。 有序填 ordered
+    // 这是解决中文乱码的问题的。
+    "uri_encoding": false,
+    // 使用markdown preview插件时使用的规则，可以不选，在 markdown preview 中设置
+    "markdown_preview": ""  
+  },
+  "id_replacements": [
+    {
+      "pattern": "[_*]{2}([^\\s])[_*]{2}",
+      "replacement": "\\1"
+    },
+    {
+      "pattern": "[_*]([^\\s])[_*]",
+      "replacement": "\\1"
+    },
+    {
+      "pattern": "\\s+",
+      "replacement": "-"
+    },
+    {
+      "pattern": "&lt;|&gt;|&amp;|&apos;|&quot;|&#60;|&#62;|&#38;|&#39;|&#34;|!|#|$|&|'|\\(|\\)|\\*|\\+|,|/|:|;|=|\\?|@|\\[|\\]|`|\"|\\.|\\\\|<|>|{|}|™|®|©",
+      "replacement": ""
+    }
+  ],
+  "logging": false
 }
 
+
 ```
-更多的 markdown-TOC 设置参考 [markdownTOC document](https://github.com/naokazuterada/MarkdownTOC) 
-4. 
+更多的 markdown-TOC 设置参考 [markdownTOC document](https://github.com/naokazuterada/MarkdownTOC) 。  
+ 
