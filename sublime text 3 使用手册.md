@@ -1,10 +1,12 @@
+
+
 ## sublime text 3 使用方式
 1. 配置和下载
 2. <a href="#" id="2">常用快捷键</a>
 3. <a href="#" id="3">自定义功能</a>
 
 
-###### <p id="2">2.常用快捷键</p>
+## <p id="2">2.常用快捷键</p>
 - CTRL + 数字1~6表示 标题大小,1代表一级标题
 ctrl + shift + d : 向下快速复制一行
 ctrl + shift + k : 快速删除整行
@@ -22,7 +24,7 @@ ctrl + shift + ↓ : 整行向下移动
 完成，基本的编辑就可以了
 
 
-### 使用模板
+## 使用模板
 1. 工具--→插件开发--→新建代码段--→会出来一个文件如下
 ```snippet
 <snippet>  
@@ -44,3 +46,29 @@ Hello, ${1:this} is a ${2:snippet}.
 
 6. `Hello, ${1:this} is a ${2:snippet}.`这段代码的含义如下
   - `${1:this}` :代表光标在这个地方 在代码上放`${1}`就行，如果需要通时编辑几个光标就弄重复的相同的`${1}`，如果想光标快速跳转到下一光标可以放`${2},${3}`然后按table键可以把光标从1移到2上面去，按esc解除光标快速移动
+
+## 如何开启vi模式
+
+1. 在setting里面把package ignore 里面的vintage给去掉
+2. 然后在下面加上`"vintage_start_in_command_mode": true,`这样就可以了，因为是 json 格式，所以只要语法不错就可以了，这是设置的一打开sublime text 3 就进入command模式，也就是命令模式。  
+
+## 如何配置Markdown的文档编写环境  
+
+主要是几个插件的下载和基本的配置 **插件的配置最好是把所有的默认配置复制过去再修改，不然有些插件直接不会生效**   
+
+1. 通过package control 下载 `Markdown Editing`，和`Markdown Preview`，这样就可以预览和编写 markdown 文档了。`Markdown TOC`是一个可选的插件
+2. `Markdown Editing`的配置 
+3. `Markdown Preview`的使用 `ctrl +shift + p` 搜索`markdown preview` 然后就有选项出来了。GFM 格式需要自己设置  
+```json
+{
+  "defaults": {
+    "autolink": true,
+    "bracket": "round",
+    "lowercase": "only_ascii",
+    "markdown_preview": "github"
+  }
+}
+
+```
+更多的 markdown-TOC 设置参考 [markdownTOC document](https://github.com/naokazuterada/MarkdownTOC) 
+4. 
