@@ -71,14 +71,14 @@ Hello, ${1:this} is a ${2:snippet}.
 ```json
 {
   "defaults": {
-    "autoanchor": true,
+    "autoanchor": true,  // 这是生成的自动的html标签，移除TOC的时候选false
     "autolink": true,// 这是生成自动链接的。
-    "bracket": "round",
+    "bracket": "round", // 这是代表链接后面的括号是（ 如果改成[ 则写square
     "levels": [1,2,3],// 这是目录的深度，最多是6层
-    "indent": "\t",  // 目录换行
-    "remove_image": true,  // 移除目录的图片
+    "indent": "\t",  // 每级目录前面多一个制表符
+    "remove_image": true,  // 如果标题有图片的话移除图片
     "link_prefix": "",  // 这是链接前缀
-    "bullets": ["-"],  // 这是代表空格使用什么连接。
+    "bullets": ["-"],  // 这是代表每集目录所使用的连接符号。
     "lowercase": "only_ascii", // 这是关于是否转换为小写的设置。
     "style": "unordered",  // 这是代表生成的目录是否是有序的。 有序填 ordered
     // 这是解决中文乱码的问题的。
