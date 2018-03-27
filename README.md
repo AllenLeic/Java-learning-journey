@@ -6,7 +6,7 @@
 ### [javaSE部分](javase笔记)
 这部分之前学习的时候还不会使用git工具，日后再慢慢补上。
 
-### [javaEE部分](javaee笔记)
+### [javaEE部分](javaEE笔记)
 
 ### [前端基础(html+css+javascript)](front-end)
 前端部分的笔记只有一些基础，毕竟是学后台开发的。
